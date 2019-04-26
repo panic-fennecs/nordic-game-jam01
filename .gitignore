@@ -1,1 +1,6 @@
 /nordic_game_jam/bin/
+
+.import
+*.png.import
+export.cfg
+export_presets.cfg
