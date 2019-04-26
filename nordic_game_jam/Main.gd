@@ -1,6 +1,6 @@
 extends Node2D
 
-export var iteration = 1
+export var iteration = 3
 
 var scene_list = []
 
@@ -20,6 +20,6 @@ func instantiate_scenes_current_iteration(var iteration):
 	iteration+=1
 		
 func instantiate_next_scene(var index):
-	var next_scene = scene_list[index].instance()
+	var next_scene = scene_list[0].instance()
 	next_scene.set_position(Vector2(0, index * 1080))
 	add_child(next_scene)
