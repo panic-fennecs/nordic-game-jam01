@@ -12,3 +12,6 @@ func get_current_time():
 func _input(ev):
 	if ev is InputEventKey and ev.scancode in POSSIBLE_INPUTS and ev.pressed and !ev.echo:
 		inputs.append([get_current_time(), ev.scancode]);
+
+func clear():
+	inputs.clear();
