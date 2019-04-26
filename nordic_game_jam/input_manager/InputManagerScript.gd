@@ -1,17 +1,25 @@
 extends Node
 
-const POSSIBLE_INPUTS = [
-	KEY_Q, KEY_P
-];
+const PLAYER1_INPUTS = {
+	KEY_Q: "x",
+};
 
-var inputs = [];
+const PLAYER2_INPUTS = {
+	KEY_P: "x",
+};
+
+var player1_inputs = [];
+var player2_inputs = [];
 
 func get_current_time():
 	return OS.get_ticks_usec();
 
 func _input(ev):
-	if ev is InputEventKey and ev.scancode in POSSIBLE_INPUTS and ev.pressed and !ev.echo:
-		inputs.append([get_current_time(), ev.scancode]);
-
-func clear():
-	inputs.clear();
+	var ct = get_current_time();
+	if ev is InputEventKey and ev.pressed and !ev.echo:
+		if ev.scancode in PLAYER1_INPUTS:
+			var entry = {"time": ct, "input": PLAYER1_INPUTS[ev.scancode]};
+			player1_inputs.append(entry);
+		if ev.scancode in PLAYER2_INPUTS:
+			var entry = {"time": ct, "input": PLAYER2_INPUTS[ev.scancode]};
+			player2_inputs.append(entry);
