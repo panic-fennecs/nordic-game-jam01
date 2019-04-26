@@ -13,6 +13,7 @@ var last_input1 = 0
 var last_input2 = 0
 
 var num_current_matches = 0
+const NUM_MATCHES = 5
 
 const THRESHOLD = 40000
 
@@ -22,31 +23,41 @@ func _ready():
 	player2_node.play("unpressed")
 
 
+func miss():
+	num_current_matches = 0
+	last_input1 = 0
+	last_input2 = 0
+	print("miss")
+
+
+func strike():
+	num_current_matches += 1
+	print(num_current_matches)
+	last_input1 = 0
+	last_input2 = 0
+	if num_current_matches >= NUM_MATCHES:
+		print("won")
+
 func _process(_delta):
 	var current_time = get_current_time()
 
 	if (last_input1 != 0) and (last_input2 != 0):
 		var diff = abs(last_input1 - last_input2)
 		if diff > THRESHOLD:
-			print("bup0")
+			miss()
 		else:
-			print("yup")
-		last_input1 = 0
-		last_input2 = 0
+			strike()
 
 	if last_input1 != 0:
 		var diff1 = abs(current_time - last_input1)
 		if diff1 > THRESHOLD:
-			last_input1 = 0
-			last_input2 = 0
-			print("bup1")
+			miss()
 
 	if last_input2 != 0:
 		var diff2 = abs(current_time - last_input2)
 		if diff2 > THRESHOLD:
-			last_input1 = 0
-			last_input2 = 0
-			print("bup2")
+			miss()
+
 
 func _input(event):
 	var current_time = get_current_time()
