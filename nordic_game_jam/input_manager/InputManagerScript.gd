@@ -1,7 +1,7 @@
 extends Node
 
 const POSSIBLE_INPUTS = [
-	"ui_select"
+	KEY_Q, KEY_P
 ];
 
 var inputs = [];
@@ -9,14 +9,6 @@ var inputs = [];
 func get_current_time():
 	return OS.get_ticks_usec();
 
-func has_been_pressed(string):
-	return Input.is_action_just_pressed(string);
-
-func store_inputs():
-	for pi in POSSIBLE_INPUTS:
-		if has_been_pressed(pi):
-			inputs.append([get_current_time(), pi]);
-
-func _process(delta):
-	store_inputs();
-	print(inputs);
+func _input(ev):
+	if ev is InputEventKey and ev.scancode in POSSIBLE_INPUTS and ev.pressed and !ev.echo:
+		inputs.append([get_current_time(), ev.scancode]);
