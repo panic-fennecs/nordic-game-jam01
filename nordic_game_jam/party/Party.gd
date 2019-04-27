@@ -17,7 +17,6 @@ const NUM_MATCHES = 5
 
 const THRESHOLD = 40000
 
-
 func on_gain_focus():
 	player1_node.play("unpressed")
 	player2_node.play("unpressed")
