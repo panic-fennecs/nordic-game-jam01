@@ -39,8 +39,12 @@ func on_lose_focus():
 	im.clear();
 	bm.clear_preps();
 
-func fail():
-	print("fail!")
+func fail(player, key):
+	if key == "none":
+		pass
+	else:
+		var button_id = bm.to_id(player, key)
+		bm.buttons[button_id].failed()
 	restart()
 
 func win():
@@ -49,6 +53,13 @@ func win():
 	patterns = null;
 	bm.clear_preps();
 	get_node("/root/Main").next_scene()
+
+func small_win(player, key):
+	if key == "none":
+		pass
+	else:
+		var button_id = bm.to_id(player, key)
+		bm.buttons[button_id].succeed()
 
 func _process(_delta):
 	if not active:
@@ -63,7 +74,7 @@ func _process(_delta):
 					$Character1.spawn_emote("wrong")
 				else:
 					$Character2.spawn_emote("wrong")
-				fail();
+				fail(p, i[0].input);
 				return
 			if abs(i[0].time - patterns[p][0].timestamp) >= THRESHOLD:
 				print("thresh!")
@@ -71,8 +82,9 @@ func _process(_delta):
 					$Character1.spawn_emote("rested")
 				else:
 					$Character2.spawn_emote("rested")
-				fail();
+				fail(p, i[0].input);
 				return
+			small_win(p, i[0].input)
 			bm.preps[bm.to_id(str(p), i[0].input)].pop_front();
 			i.pop_front();
 			patterns[p].pop_front();
@@ -85,4 +97,4 @@ func _process(_delta):
 		var ct = im.get_current_time()
 		if patterns != null and len(patterns[p]) > 0 and patterns[p][0].timestamp <= ct - THRESHOLD:
 			print("time fail!")
-			fail()
+			fail(p, "none")
