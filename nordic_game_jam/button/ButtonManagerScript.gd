@@ -16,14 +16,14 @@ func from_id(string):
 	a = a.substr(1, a.len() - 1);
 	return [a, b];
 
-func _init():
+func _ready():
 	for player in ["0", "1"]:
 		for key in ["up", "down", "left", "right"]:
 			var button = BUTTON.instance();
 			var id = to_id(player, key);
 			button.play(id);
 
-			var dim = OS.get_screen_size();
+			var dim = get_viewport_rect().size;
 
 			var screenx = dim.x;
 			var screeny = dim.y;
@@ -33,12 +33,12 @@ func _init():
 			if player == "1":
 				posx += screenx / 2;
 			if key == "left":
-				posx -= button_size * 2;
+				posx -= button_size * 1.2;
 			if key == "right":
-				posx += button_size * 2;
+				posx += button_size * 1.2;
 			
-			var posy = screeny - button_size * 2;
-			if key == "up": posy -= button_size * 2;
+			var posy = screeny - button_size * 1.2;
+			if key == "up": posy -= button_size * 1.2;
 
 			button.position.x = posx;
 			button.position.y = posy;
