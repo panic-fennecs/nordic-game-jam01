@@ -43,25 +43,34 @@ func _ready():
 			button.position.x = posx;
 			button.position.y = posy;
 			buttons[id] = button;
-			preps[id] = null;
+			preps[id] = [];
 			add_child(button);
 
 func prepare_key(player, key, time):
-	preps[to_id(player, key)] = time;
+	preps[to_id(player, key)].append(time);
 
 func prepare_pattern(player, pattern):
 	for hit in pattern.hits:
 		prepare_key(player, hit.key, hit.timestamp);
 
+func clear_preps():
+	preps = {};
+	for player in ["0", "1"]:
+		for key in ["up", "down", "left", "right"]:
+			preps[to_id(player, key)] = [];
+
 func _process(_delta):
 	var ct = im.get_current_time();
 	for i in preps:
-		var x = preps[i];
-		var sizefactor = 0;
-		if x != null:
-			sizefactor = float(ct - x) / PREP_DELTA;
-			if sizefactor > 1:
+		var max_sizefactor = 0
+		for x in preps[i]:
+			var sizefactor = null
+			if ct > x:
 				sizefactor = 1;
-			if sizefactor < 0:
+			elif ct < x - PREP_DELTA:
 				sizefactor = 0;
-		buttons[i].get_child(0).scale = Vector2(sizefactor, sizefactor);
+			else: 
+				sizefactor = 1 - (float(x - ct) / PREP_DELTA);
+
+			max_sizefactor = max(max_sizefactor, sizefactor)
+		buttons[i].get_child(0).scale = Vector2(max_sizefactor, max_sizefactor);
