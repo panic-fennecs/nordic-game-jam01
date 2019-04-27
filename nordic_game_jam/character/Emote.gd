@@ -13,9 +13,11 @@ func _ready() -> void:
 	initial_pos = position + Vector2(rand_range(-20,20), rand_range(-20,20))
 	$Timer.connect("timeout", self, "_on_Timer_timeout")
 	if is_miss:
+		$Timer.wait_time = 0.4
 		$Tween.interpolate_property(self, "position", initial_pos, 
 			initial_pos + Vector2(0, -100), 0.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 		$Tween.start()
+	$Timer.start()
 
 func _process(delta: float) -> void:
 	if not is_miss:
