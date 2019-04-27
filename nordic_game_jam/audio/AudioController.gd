@@ -34,7 +34,7 @@ func _init():
 	add_child(player_party_lowpass)
 	add_child(player_bedroom)
 	
-	#_init_with_room(0)
+	_init_with_room(0)
 
 func _process(delta):
 	if fading:

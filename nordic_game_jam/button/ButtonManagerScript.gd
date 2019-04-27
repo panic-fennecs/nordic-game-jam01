@@ -8,6 +8,7 @@ var preps = {};
 var buttons = {};
 
 func to_id(player, key):
+	player = str(player)
 	return "p" + player + "_" + key;
 
 func from_id(string):
