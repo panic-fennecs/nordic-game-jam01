@@ -29,3 +29,7 @@ func _input(ev):
 		if ev.scancode in PLAYER2_INPUTS:
 			var entry = {"time": ct, "input": PLAYER2_INPUTS[ev.scancode]};
 			player2_inputs.append(entry);
+
+func clear():
+	player1_inputs.clear()
+	player2_inputs.clear()
