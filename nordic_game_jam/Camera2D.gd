@@ -9,3 +9,8 @@ func move_to_next_scene():
 		self.position + Vector2(0, 1080), 1, 
 		Tween.TRANS_CIRC, Tween.EASE_OUT)
 	$Tween.start()
+	
+func scroll_to_new_day():
+	$Tween.interpolate_property(self, "position", self.position, 
+		Vector2(0, 0), 1, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
+	$Tween.start()
