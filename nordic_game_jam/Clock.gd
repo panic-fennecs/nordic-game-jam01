@@ -8,6 +8,7 @@ const CLOCK_PROGRESS_COLOR = Color(1.0, 0.0, 0.0)
 
 func _ready() -> void:
 	$FreeTimeTimer.connect("timeout", self, "_day_over")
+	position.x = get_viewport_rect().size.x / 2
 	
 func _day_over() -> void:
 	emit_signal("day_over")
