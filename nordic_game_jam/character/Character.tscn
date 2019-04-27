@@ -620,6 +620,7 @@ tracks/15/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "drink"
+loop = true
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/ArmL:position")
@@ -1446,7 +1447,6 @@ tracks/33/keys = {
 [sub_resource type="Animation" id=5]
 resource_name = "sleep"
 length = 2.0
-loop = true
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/LegL/LowerLegL/BoneDisplay:position")
@@ -2436,7 +2436,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "sleep"
+autoplay = "drink"
 anims/base = SubResource( 1 )
 anims/dance = SubResource( 2 )
 anims/drink = SubResource( 3 )
