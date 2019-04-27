@@ -41,6 +41,7 @@ func next_scene():
 	else:
 		scene_index += 1
 	init_scene()
+	get_node("/root/Main/AudioController")._on_room_changed(scene_index)
 
 func day_over_signal_received():
 	get_scenes()[scene_index].on_lose_focus()
@@ -49,11 +50,9 @@ func day_over_signal_received():
 	remove_old_scenes()
 	instantiate_scenes()
 	init_scene()
+	get_node("/root/Main/AudioController")._on_room_changed(scene_index)
 
 func remove_old_scenes():
 	for scene in get_scenes():
 		scene.queue_free()
 		remove_child(scene)
-
-func _on_room_changed(index):
-	pass # Replace with function body.
