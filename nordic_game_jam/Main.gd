@@ -9,7 +9,7 @@ func _ready():
 	instantiate_scenes_current_iteration(iteration)
 	
 func preload_scenes():
-	var eat_scene_resource = load("res://eat_scene/EatScene.tscn")
+	var eat_scene_resource = load("res://party/PartyScene.tscn")
 	scene_list.append(eat_scene_resource)
 	
 func instantiate_scenes_current_iteration(iteration):
