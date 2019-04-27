@@ -50,10 +50,10 @@ func day_over_signal_received():
 	get_scenes()[scene_index].on_lose_focus()
 	day_index += 1
 	scene_index = 0
-	init_scene()
 	remove_old_scenes()
 	instantiate_scenes_current_iteration()
-	
+	init_scene()
+
 func remove_old_scenes():
 	for scene in get_scenes():
 		scene.queue_free()
