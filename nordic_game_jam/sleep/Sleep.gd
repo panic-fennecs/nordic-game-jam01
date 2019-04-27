@@ -36,9 +36,8 @@ func win():
 	bm.clear_preps();
 
 func _process(_delta):
-	if pattern == null: return
 	var i = im.get_inputs(0);
-	if len(i) > 0:
+	if len(i) > 0 and pattern != null:
 		if i[0].input != pattern.hits[0].key:
 			print("wrong key!")
 			fail();
@@ -54,3 +53,8 @@ func _process(_delta):
 		print("small win")
 		if len(pattern.hits) == 0:
 			win();
+	
+	var ct = im.get_current_time()
+	if pattern != null and pattern.hits[0].timestamp <= ct - THRESHOLD:
+		print("time fail!")
+		fail()
