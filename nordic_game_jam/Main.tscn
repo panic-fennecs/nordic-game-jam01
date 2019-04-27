@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://button/ButtonManagerScene.tscn" type="PackedScene" id=4]
 [ext_resource path="res://input_manager/InputManagerScene.tscn" type="PackedScene" id=5]
 [ext_resource path="res://audio/AudioController.tscn" type="PackedScene" id=6]
+[ext_resource path="res://character/Character.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,5 +28,11 @@ position = Vector2( 0, 128 )
 [node name="InputManagerNode" parent="." instance=ExtResource( 5 )]
 
 [node name="AudioController" parent="." instance=ExtResource( 6 )]
+
+[node name="Character1" parent="." instance=ExtResource( 7 )]
+position = Vector2( 244.85, 280.685 )
+
+[node name="Character2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 850, 273 )
 
 [connection signal="day_over" from="UILayer/Clock" to="AudioController" method="_on_day_over"]
