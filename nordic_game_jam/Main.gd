@@ -22,8 +22,16 @@ func instantiate_scenes_current_iteration():
 	
 func instantiate_next_scene(index):
 	var next_scene = scene_list[0].instance()
-	next_scene.set_position(Vector2(0, index * 1080))
+	next_scene.set_position(Vector2(0, index * 720))
 	add_child(next_scene)
+	next_scene.add_to_group("dynamic_scenes")
 	
 func day_over_signal_received():
-	$Camera2D.move_to_next_scene()
+	$Camera2D.scroll_to_new_day()
+	remove_old_scenes()
+	instantiate_scenes_current_iteration()
+	
+func remove_old_scenes():
+	var dynamic_scenes = get_tree().get_nodes_in_group("dynamic_scenes")
+	for scene in dynamic_scenes:
+		scene.queue_free()
