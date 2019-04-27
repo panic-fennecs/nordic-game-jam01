@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]
-z_index = -1
+z_index = -100
 texture = ExtResource( 2 )
 centered = false
 
