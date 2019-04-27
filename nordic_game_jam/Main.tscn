@@ -19,7 +19,7 @@ script = ExtResource( 2 )
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="Clock" parent="UILayer" instance=ExtResource( 3 )]
-position = Vector2( 960, 128 )
+position = Vector2( 0, 128 )
 
 [node name="ButtonManagerNode" parent="UILayer" instance=ExtResource( 4 )]
 
