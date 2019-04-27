@@ -15,6 +15,11 @@ const THRESHOLD = 40000
 var active = false
 
 
+func _ready():
+	get_node("Character1/AnimationPlayer").play("dance")
+	get_node("Character2/AnimationPlayer").play("dance")
+
+
 func on_gain_focus():
 	active = true
 	bm.set_visible(false)
