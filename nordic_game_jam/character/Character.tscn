@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://character/Character.gd" type="Script" id=1]
 [ext_resource path="res://res/images/stick_figure.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://res/images/stick_hand.png" type="Texture" id=7]
 [ext_resource path="res://res/images/stick_UpperLeg.png" type="Texture" id=8]
 [ext_resource path="res://res/images/stick_LowerLeg.png" type="Texture" id=9]
+[ext_resource path="res://res/images/drink.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "base"
@@ -668,7 +669,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ -32.6387, 1.85001, -32.6387, -32.6387, -32.6387 ]
+"values": [ -32.6387, -44.4915, -32.6387, -32.6387, -32.6387 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Body/ArmR/LowerArmR:position")
@@ -692,7 +693,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ -28.8633, -72.3611, -28.8633, -28.8633, -28.8633 ]
+"values": [ -28.8633, -79.6301, -28.8633, -28.8633, -28.8633 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Body/LegL/LowerLegL/BoneDisplay:position")
@@ -884,7 +885,7 @@ tracks/21/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 131.126, 240.0, 131.126, 131.126, 131.126 ]
+"values": [ 131.126, 301.841, 131.126, 131.126, 131.126 ]
 }
 tracks/22/type = "value"
 tracks/22/path = NodePath("Body/Head:position")
@@ -917,7 +918,7 @@ tracks/24/loop_wrap = true
 tracks/24/imported = false
 tracks/24/enabled = true
 tracks/24/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.5, 0.75, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.0205841, 78.9287 ), Vector2( 0.0205841, 78.9287 ), Vector2( 0.0205841, 78.9287 ), Vector2( 0.0205841, 78.9287 ), Vector2( 0.0205841, 78.9287 ) ]
@@ -1029,6 +1030,30 @@ tracks/33/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 152.779, 152.779, 152.779, 152.779, 152.779 ]
+}
+tracks/34/type = "value"
+tracks/34/path = NodePath("Bottle:position")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/keys = {
+"times": PoolRealArray( 0, 0.15, 0.25, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 209.656, -109.092 ), Vector2( 180.172, -221.06 ), Vector2( 112.95, -284.857 ), Vector2( 198.872, -187.29 ), Vector2( 209.488, -108.911 ) ]
+}
+tracks/35/type = "value"
+tracks/35/path = NodePath("Bottle:rotation_degrees")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0, 0.15, 0.25, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 10.0, -56.0, -100.0, -34.0, 10.0 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -2281,18 +2306,16 @@ position = Vector2( 0, -330 )
 visible = false
 modulate = Color( 1, 1, 1, 0.145098 )
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Body" type="Sprite" parent="."]
-rotation = -0.174533
+position = Vector2( 0.0205841, 78.9287 )
 z_index = -1
 texture = ExtResource( 3 )
 offset = Vector2( -0.0205841, -125.929 )
 
 [node name="Head" type="Sprite" parent="Body"]
-position = Vector2( 1.04187, -287.593 )
+position = Vector2( 0, -281.684 )
+rotation = -0.0698132
 texture = ExtResource( 4 )
 offset = Vector2( 2.78386, -73.6462 )
 __meta__ = {
@@ -2307,7 +2330,7 @@ __meta__ = {
 
 [node name="ArmR" type="Sprite" parent="Body"]
 position = Vector2( 0, -240.641 )
-rotation = -1.47792
+rotation = -1.13377
 z_as_relative = false
 texture = ExtResource( 5 )
 offset = Vector2( -0.0727921, 48.6414 )
@@ -2317,7 +2340,7 @@ __meta__ = {
 
 [node name="LowerArmR" type="Sprite" parent="Body/ArmR"]
 position = Vector2( 0, 94.027 )
-rotation = 3.08099
+rotation = -0.858179
 z_index = -1
 texture = ExtResource( 6 )
 offset = Vector2( 0.166115, 60.9725 )
@@ -2328,7 +2351,7 @@ __meta__ = {
 
 [node name="HandR" type="Sprite" parent="Body/ArmR/LowerArmR"]
 position = Vector2( 0, 111.893 )
-rotation = -10.2219
+rotation = -0.652401
 z_index = 1
 z_as_relative = false
 texture = ExtResource( 7 )
@@ -2339,14 +2362,14 @@ __meta__ = {
 
 [node name="BoneDisplay" type="Node2D" parent="Body/ArmR/LowerArmR/HandR"]
 position = Vector2( 0, 23 )
-rotation = 2.74078
+rotation = 3.48039
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="ArmL" type="Sprite" parent="Body"]
 position = Vector2( 0, -240.641 )
-rotation = 1.60448
+rotation = 0.782984
 z_index = -2
 z_as_relative = false
 texture = ExtResource( 5 )
@@ -2357,7 +2380,7 @@ __meta__ = {
 
 [node name="LowerArmL" type="Sprite" parent="Body/ArmL"]
 position = Vector2( 0, 93.027 )
-rotation = 5.23782
+rotation = -1.03508
 z_index = -1
 texture = ExtResource( 6 )
 offset = Vector2( 0.166115, 60.9725 )
@@ -2368,7 +2391,7 @@ __meta__ = {
 
 [node name="HandL" type="Sprite" parent="Body/ArmL/LowerArmL"]
 position = Vector2( 0, 111.893 )
-rotation = 0.0438561
+rotation = -0.461776
 texture = ExtResource( 7 )
 offset = Vector2( -0.100372, 20.1072 )
 __meta__ = {
@@ -2377,14 +2400,14 @@ __meta__ = {
 
 [node name="BoneDisplay" type="Node2D" parent="Body/ArmL/LowerArmL/HandL"]
 position = Vector2( 0, 24 )
-rotation = 8.00579
+rotation = 2.6665
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="LegR" type="Sprite" parent="Body"]
 position = Vector2( 0, 2.773 )
-rotation = -3.16168
+rotation = -0.273441
 z_as_relative = false
 texture = ExtResource( 8 )
 offset = Vector2( 0.232635, 77.2266 )
@@ -2394,7 +2417,7 @@ __meta__ = {
 
 [node name="LowerLegR" type="Sprite" parent="Body/LegR"]
 position = Vector2( 0, 166.001 )
-rotation = 3.11337
+rotation = 0.744626
 texture = ExtResource( 9 )
 offset = Vector2( -0.0387344, 80.9989 )
 __meta__ = {
@@ -2403,14 +2426,14 @@ __meta__ = {
 
 [node name="BoneDisplay" type="Node2D" parent="Body/LegR/LowerLegR"]
 position = Vector2( 0, 160 )
-rotation = 0.08925
+rotation = -0.522592
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="LegL" type="Sprite" parent="Body"]
 position = Vector2( 0, 2.773 )
-rotation = -3.11416
+rotation = -0.0916422
 z_index = -2
 z_as_relative = false
 texture = ExtResource( 8 )
@@ -2421,7 +2444,7 @@ __meta__ = {
 
 [node name="LowerLegL" type="Sprite" parent="Body/LegL"]
 position = Vector2( 0, 164.001 )
-rotation = 3.07447
+rotation = 0.123241
 texture = ExtResource( 9 )
 offset = Vector2( -0.0387344, 80.9989 )
 __meta__ = {
@@ -2430,7 +2453,7 @@ __meta__ = {
 
 [node name="BoneDisplay" type="Node2D" parent="Body/LegL/LowerLegL"]
 position = Vector2( 0, 160 )
-rotation = -0.448309
+rotation = -0.0382309
 __meta__ = {
 "_edit_bone_": true
 }
@@ -2443,4 +2466,11 @@ anims/drink = SubResource( 3 )
 anims/eat = SubResource( 4 )
 anims/sleep = SubResource( 5 )
 anims/sleep2 = SubResource( 6 )
+
+[node name="Bottle" type="Sprite" parent="."]
+position = Vector2( 198.872, -187.29 )
+rotation = -0.593412
+scale = Vector2( 0.5, 0.5 )
+z_index = 1
+texture = ExtResource( 10 )
 
