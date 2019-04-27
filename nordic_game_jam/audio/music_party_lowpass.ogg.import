@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music_party_lowpass.ogg-6e502bb28675bda2aed158a07eb28208.oggstr"
+
+[deps]
+
+source_file="res://audio/music_party_lowpass.ogg"
+dest_files=[ "res://.import/music_party_lowpass.ogg-6e502bb28675bda2aed158a07eb28208.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
