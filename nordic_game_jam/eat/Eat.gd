@@ -10,6 +10,12 @@ const N = 4;
 var patterns = null;
 var active = false;
 
+func _ready():
+	get_node("Character1/AnimationPlayer").play("drink")
+	get_node("Character2/AnimationPlayer").play("eat")
+	get_node("Character1").set_scale(Vector2(0.5, 0.5))
+	get_node("Character2").set_scale(Vector2(0.5, 0.5))
+
 func generate_random(n, start_timestamp, possible_keys):
 	var inst = load("res://patterns/Pattern.gd")
 	return inst.generate_random(n, start_timestamp, null, 1000, possible_keys);
