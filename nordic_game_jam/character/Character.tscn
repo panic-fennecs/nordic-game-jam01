@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://character/Character.gd" type="Script" id=1]
 [ext_resource path="res://res/images/stick_figure.png" type="Texture" id=2]
@@ -617,8 +617,10 @@ tracks/15/keys = {
 "values": [ 103.562, 103.562, 103.562 ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "sleep"
+
 [node name="Character" type="Node2D"]
-editor/display_folded = true
 position = Vector2( 200, 500 )
 script = ExtResource( 1 )
 
@@ -722,6 +724,7 @@ __meta__ = {
 
 [node name="LegR" type="Sprite" parent="Body"]
 position = Vector2( 0, 2.773 )
+rotation = -2.03055
 z_as_relative = false
 texture = ExtResource( 8 )
 offset = Vector2( 0.232635, 77.2266 )
@@ -731,6 +734,7 @@ __meta__ = {
 
 [node name="LowerLegR" type="Sprite" parent="Body/LegR"]
 position = Vector2( 0, 166.001 )
+rotation = 2.3011
 texture = ExtResource( 9 )
 offset = Vector2( -0.0387344, 80.9989 )
 __meta__ = {
@@ -739,12 +743,14 @@ __meta__ = {
 
 [node name="BoneDisplay" type="Node2D" parent="Body/LegR/LowerLegR"]
 position = Vector2( 0, 160 )
+rotation = -0.227905
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="LegL" type="Sprite" parent="Body"]
 position = Vector2( 0, 2.773 )
+rotation = -1.65326
 z_index = -2
 z_as_relative = false
 texture = ExtResource( 8 )
@@ -755,6 +761,7 @@ __meta__ = {
 
 [node name="LowerLegL" type="Sprite" parent="Body/LegL"]
 position = Vector2( 0, 164.001 )
+rotation = 0.348016
 texture = ExtResource( 9 )
 offset = Vector2( -0.0387344, 80.9989 )
 __meta__ = {
@@ -763,6 +770,7 @@ __meta__ = {
 
 [node name="BoneDisplay" type="Node2D" parent="Body/LegL/LowerLegL"]
 position = Vector2( 0, 160 )
+rotation = 1.07448
 __meta__ = {
 "_edit_bone_": true
 }
@@ -771,4 +779,5 @@ __meta__ = {
 autoplay = "dance"
 anims/base = SubResource( 1 )
 anims/dance = SubResource( 2 )
+anims/sleep = SubResource( 3 )
 
