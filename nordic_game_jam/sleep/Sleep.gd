@@ -4,7 +4,7 @@ onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 
 const MAX_NOTE_DIST = 20;
-const THRESHOLD = 150;
+const THRESHOLD = 200;
 const N = 4;
 
 var patterns = null;
