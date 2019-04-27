@@ -22,7 +22,7 @@ func instantiate_scenes_current_iteration():
 	
 func instantiate_next_scene(index):
 	var next_scene = scene_list[0].instance()
-	next_scene.set_position(Vector2(0, index * 1080))
+	next_scene.set_position(Vector2(0, index * 720))
 	add_child(next_scene)
 	next_scene.add_to_group("dynamic_scenes")
 	
