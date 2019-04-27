@@ -8,6 +8,7 @@ const THRESHOLD = 150;
 const N = 2;
 
 var patterns = null;
+var active = false;
 
 func generate_random(n, start_timestamp, possible_keys):
 	var inst = load("res://patterns/Pattern.gd")
@@ -23,10 +24,13 @@ func restart():
 	im.clear()
 
 func on_gain_focus():
+	active = true;
 	restart()
 
 func on_lose_focus():
+	active = false;
 	patterns = null;
+	im.clear();
 	bm.clear_preps();
 
 func fail():
@@ -40,6 +44,9 @@ func win():
 	bm.clear_preps();
 
 func _process(_delta):
+	if not active:
+		return
+	
 	for p in [0, 1]:
 		var i = im.get_inputs(p);
 		if len(i) > 0 and patterns != null:
