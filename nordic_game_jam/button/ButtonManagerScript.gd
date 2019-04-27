@@ -16,6 +16,17 @@ func from_id(string):
 	a = a.substr(1, a.len() - 1);
 	return [a, b];
 
+func dist(x):
+	if x == "left":
+		return -1.5
+	elif x == "down":
+		return -0.5
+	elif x == "up":
+		return 0.5
+	elif x == "right":
+		return 1.5
+	assert(false)
+
 func _ready():
 	for player in ["0", "1"]:
 		for key in ["up", "down", "left", "right"]:
@@ -29,16 +40,11 @@ func _ready():
 			var screeny = dim.y;
 			var button_size = 128;
 
-			var posx = screenx / 4;
+			var posx = screenx / 4 + dist(key) * button_size * 0.7;
 			if player == "1":
 				posx += screenx / 2;
-			if key == "left":
-				posx -= button_size * 1.2;
-			if key == "right":
-				posx += button_size * 1.2;
 			
-			var posy = screeny - button_size * 1.2;
-			if key == "up": posy -= button_size * 1.2;
+			var posy = screeny - button_size * 0.4;
 
 			button.position.x = posx;
 			button.position.y = posy;
