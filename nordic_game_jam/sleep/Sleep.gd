@@ -42,6 +42,7 @@ func win():
 	im.clear();
 	patterns = null;
 	bm.clear_preps();
+	get_node("/root/Main").next_scene()
 
 func _process(_delta):
 	if not active:
