@@ -12,7 +12,7 @@ var player1_inputs = [];
 var player2_inputs = [];
 
 func get_current_time():
-	return OS.get_ticks_usec();
+	return OS.get_ticks_msec();
 
 func _input(ev):
 	var ct = get_current_time();
