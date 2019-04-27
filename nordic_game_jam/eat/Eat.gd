@@ -20,6 +20,7 @@ func restart():
 	current_pattern = []
 	current_full_pattern = []
 	state = "compose"
+	info("compose!")
 
 func on_gain_focus():
 	active = true
@@ -33,22 +34,39 @@ func info(x):
 
 func blacklisted(pattern):
 	return false
+	# TODO check!
+	for p in blacklist:
+		if len(p) != len(pattern):
+			continue
+		var worked = true
+		for i in range(len(p)):
+			if p[i].input != pattern[i].input:
+				worked = false
+				break
+			if abs(p[i].time - pattern[i].time) >= THRESHOLD:
+				worked = false
+				break
+		if !worked:
+			continue
+		
+	return false
 
 func _process(_delta):
-	if not active: return
+	if not active:
+		return
 
 	if state == "compose":
 		var i = im.get_inputs(composer)
 		if len(i) > 0:
 			var first = i.pop_front();
+			print("note added")
 			current_pattern.append(first)
-			print("note added!")
 		elif len(current_pattern) > 0 and current_pattern.back().time < im.get_current_time() - STOP_TIME:
 			if blacklisted(current_pattern):
 				info("not that again!")
 				restart()
 				return
-			print("repeat now!")
+			info("repeat now!")
 			state = "repeat"
 			current_full_pattern = current_pattern.duplicate(true)
 	elif state == "repeat":
