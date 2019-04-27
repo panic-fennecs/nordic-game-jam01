@@ -3,7 +3,11 @@ extends Node2D
 var scene_index = 0
 var day_index = 0
 
-var scene_list_prefabs = []
+var scene_list_prefabs = [
+	load("res://sleep/SleepScene.tscn"),
+	load("res://eat/EatScene.tscn"),
+	load("res://party/PartyScene.tscn")
+];
 
 func _unhandled_key_input(event):
 	if event.pressed and event.scancode == KEY_3:
@@ -14,24 +18,16 @@ func get_scenes():
 
 func _ready():
 	$UILayer/Clock.connect("day_over", self, "day_over_signal_received")
-	preload_scenes()
-	instantiate_scenes_current_iteration()
+	instantiate_scenes()
 	init_scene()
 	
-func preload_scenes():
-	var sleep_scene_resource = load("res://sleep/SleepScene.tscn")
-	scene_list_prefabs.append(sleep_scene_resource)
-	
-func instantiate_scenes_current_iteration():
+func instantiate_scenes():
 	#test loop for instantiating multiple scenes
-	for i in range(0, 3):
-		instantiate_next_scene(i)
-	
-func instantiate_next_scene(index):
-	var next_scene = scene_list_prefabs[0].instance()
-	next_scene.set_position(Vector2(0, index * 720))
-	add_child(next_scene)
-	next_scene.add_to_group("dynamic_scenes")
+	for i in range(0, len(scene_list_prefabs)):
+		var next_scene = scene_list_prefabs[i].instance()
+		next_scene.set_position(Vector2(0, i * 720))
+		add_child(next_scene)
+		next_scene.add_to_group("dynamic_scenes")
 
 func init_scene():
 	get_tree().get_nodes_in_group("dynamic_scenes")[scene_index].on_gain_focus()
@@ -50,10 +46,10 @@ func day_over_signal_received():
 	get_scenes()[scene_index].on_lose_focus()
 	day_index += 1
 	scene_index = 0
-	init_scene()
 	remove_old_scenes()
-	instantiate_scenes_current_iteration()
-	
+	instantiate_scenes()
+	init_scene()
+
 func remove_old_scenes():
 	for scene in get_scenes():
 		scene.queue_free()
