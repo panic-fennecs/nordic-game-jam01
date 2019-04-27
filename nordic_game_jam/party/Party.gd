@@ -35,7 +35,6 @@ func miss(player_num):
 	num_current_matches = 0
 	last_input1 = 0
 	last_input2 = 0
-	print("miss")
 	if player_num == 0:
 		$Character1.spawn_emote("miss")
 		$Character2.spawn_emote("rested")
@@ -47,7 +46,6 @@ func miss(player_num):
 
 func strike():
 	num_current_matches += 1
-	print(num_current_matches)
 	$Character1.spawn_emote("love")
 	$Character2.spawn_emote("love")
 	last_input1 = 0
