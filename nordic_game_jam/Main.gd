@@ -58,3 +58,6 @@ func remove_old_scenes():
 	for scene in get_scenes():
 		scene.queue_free()
 		remove_child(scene)
+
+func _on_room_changed(index):
+	pass # Replace with function body.

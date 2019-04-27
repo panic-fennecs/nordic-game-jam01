@@ -1,6 +1,8 @@
 extends Node2D
 
 signal day_over
+signal room_changed(index)
+var current_room_index = 0
 
 const CLOCK_BACKGROUND_COLOR = Color(1.0, 1.0, 1.0)
 const CLOCK_OUTLINE_COLOR = Color(0.0, 0.0, 0.0)
@@ -9,8 +11,11 @@ const CLOCK_PROGRESS_COLOR = Color(1.0, 0.0, 0.0)
 func _ready() -> void:
 	$FreeTimeTimer.connect("timeout", self, "_day_over")
 	position.x = get_viewport_rect().size.x / 2
+	emit_signal("room_changed", current_room_index)
 	
 func _day_over() -> void:
+	current_room_index = (current_room_index + 1) % 3
+	emit_signal("room_changed", current_room_index)
 	emit_signal("day_over")
 	
 func _process(delta: float) -> void:
