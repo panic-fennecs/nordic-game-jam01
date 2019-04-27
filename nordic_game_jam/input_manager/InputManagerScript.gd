@@ -1,11 +1,17 @@
 extends Node
 
 const PLAYER1_INPUTS = {
-	KEY_Q: "x",
+	KEY_W: "up",
+	KEY_A: "left",
+	KEY_D: "right",
+	KEY_S: "down",
 };
 
 const PLAYER2_INPUTS = {
-	KEY_P: "x",
+	KEY_UP: "up",
+	KEY_LEFT: "left",
+	KEY_RIGHT: "right",
+	KEY_DOWN: "down",
 };
 
 var player1_inputs = [];
