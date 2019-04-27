@@ -42,6 +42,7 @@ func win():
 	im.clear();
 	patterns = null;
 	bm.clear_preps();
+	get_node("/root/Main").next_scene()
 
 func _process(_delta):
 	if not active:
@@ -78,4 +79,4 @@ func _process(_delta):
 		var ct = im.get_current_time()
 		if patterns != null and len(patterns[p]) > 0 and patterns[p][0].timestamp <= ct - THRESHOLD:
 			print("time fail!")
-			fail()	
+			fail()
