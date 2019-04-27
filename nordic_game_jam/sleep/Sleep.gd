@@ -3,9 +3,6 @@ extends Node2D
 onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 
-onready var character1 = get_node("/root/Main/Character1")
-onready var character2 = get_node("/root/Main/Character2")
-
 const MAX_NOTE_DIST = 20;
 const THRESHOLD = 150;
 const N = 4;
@@ -57,25 +54,25 @@ func _process(_delta):
 			if i[0].input != patterns[p][0].key:
 				print("wrong key!")
 				if p == 0:
-					character1.spawn_emote("wrong")
+					$Character1.spawn_emote("wrong")
 				else:
-					character2.spawn_emote("wrong")
+					$Character2.spawn_emote("wrong")
 				fail();
 				return
 			if abs(i[0].time - patterns[p][0].timestamp) >= THRESHOLD:
 				print("thresh!")
 				if p == 0:
-					character1.spawn_emote("rested")
+					$Character1.spawn_emote("rested")
 				else:
-					character2.spawn_emote("rested")
+					$Character2.spawn_emote("rested")
 				fail();
 				return
 			bm.preps[bm.to_id(str(p), i[0].input)].pop_front();
 			i.pop_front();
 			patterns[p].pop_front();
 			print("small win")
-			character1.spawn_emote("love")
-			character2.spawn_emote("love")
+			$Character1.spawn_emote("love")
+			$Character2.spawn_emote("love")
 			if len(patterns[0]) == 0 and len(patterns[1]) == 0:
 				win();
 	

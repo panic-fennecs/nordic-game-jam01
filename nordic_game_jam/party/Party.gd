@@ -8,6 +8,8 @@ const PLAYER2_KEY = KEY_L
 # onready var player1_node = get_node("Player1_pressed")
 # onready var player2_node = get_node("Player2_pressed")
 onready var input_manager = get_node("/root/Main/InputManagerNode")
+onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
+
 onready var character1 = get_node("/root/Main/Character1")
 onready var character2 = get_node("/root/Main/Character2")
 
@@ -25,9 +27,11 @@ var active = false
 
 func on_gain_focus():
 	active = true
+	bm.set_visible(false)
 
 func on_lose_focus():
 	active = false
+	bm.set_visible(true)
 
 func miss(player_num):
 	num_current_matches = 0
