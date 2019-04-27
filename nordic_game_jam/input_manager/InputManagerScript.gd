@@ -29,3 +29,13 @@ func _input(ev):
 		if ev.scancode in PLAYER2_INPUTS:
 			var entry = {"time": ct, "input": PLAYER2_INPUTS[ev.scancode]};
 			player2_inputs.append(entry);
+
+func clear():
+	player1_inputs.clear()
+	player2_inputs.clear()
+
+func get_inputs(x):
+	x = str(x);
+	if x == "0": return player1_inputs
+	elif x == "1": return player2_inputs
+	assert(false)
