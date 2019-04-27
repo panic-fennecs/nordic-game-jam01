@@ -50,6 +50,10 @@ func _init():
 func prepare_key(player, key, time):
 	preps[to_id(player, key)] = time;
 
+func prepare_pattern(player, pattern):
+	for hit in pattern.hits:
+		prepare_key(player, hit.key, hit.timestamp);
+
 func _process(_delta):
 	var ct = im.get_current_time();
 	for i in preps:

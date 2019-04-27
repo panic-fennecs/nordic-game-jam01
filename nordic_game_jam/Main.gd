@@ -10,8 +10,8 @@ func _ready():
 	instantiate_scenes_current_iteration()
 	
 func preload_scenes():
-	var eat_scene_resource = load("res://party/PartyScene.tscn")
-	scene_list.append(eat_scene_resource)
+	var sleep_scene_resource = load("res://sleep/SleepScene.tscn")
+	scene_list.append(sleep_scene_resource)
 	
 func instantiate_scenes_current_iteration():
 	#test loop for instantiating multiple scenes
