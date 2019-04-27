@@ -10,6 +10,12 @@ const N = 4;
 var patterns = null;
 var active = false;
 
+func _ready():
+	get_node("Character1/AnimationPlayer").play("sleep")
+	get_node("Character2/AnimationPlayer").play("sleep")
+	get_node("Character1").set_scale(Vector2(0.5, 0.5))
+	get_node("Character2").set_scale(Vector2(-0.5, 0.5))
+
 func generate_random(n, start_timestamp, possible_keys):
 	var inst = load("res://patterns/Pattern.gd")
 	return inst.generate_random(n, start_timestamp, null, 1000, possible_keys);
@@ -33,12 +39,23 @@ func on_lose_focus():
 	im.clear();
 	bm.clear_preps();
 
-func fail():
-	print("fail!")
+func fail(player, key):
+	if key == "none":
+		pass
+	else:
+		var button_id = bm.to_id(player, key)
+		bm.buttons[button_id].failed()
 	restart()
 
+func small_win(player, key):
+	if key == "none":
+		pass
+	else:
+		var button_id = bm.to_id(player, key)
+		bm.buttons[button_id].succeed()
+
+
 func win():
-	print("win!")
 	im.clear();
 	patterns = null;
 	bm.clear_preps();
@@ -57,7 +74,7 @@ func _process(_delta):
 					$Character1.spawn_emote("wrong")
 				else:
 					$Character2.spawn_emote("wrong")
-				fail();
+				fail(p, i[0].input);
 				return
 			if abs(i[0].time - patterns[p][0].timestamp) >= THRESHOLD:
 				print("thresh!")
@@ -65,18 +82,19 @@ func _process(_delta):
 					$Character1.spawn_emote("rested")
 				else:
 					$Character2.spawn_emote("rested")
-				fail();
+				fail(p, i[0].input);
 				return
+			small_win(p, i[0].input)
 			bm.preps[bm.to_id(str(p), i[0].input)].pop_front();
 			i.pop_front();
 			patterns[p].pop_front();
-			print("small win")
+
 			$Character1.spawn_emote("love")
 			$Character2.spawn_emote("love")
 			if len(patterns[0]) == 0 and len(patterns[1]) == 0:
-				win();
+				win()
 	
 		var ct = im.get_current_time()
 		if patterns != null and len(patterns[p]) > 0 and patterns[p][0].timestamp <= ct - THRESHOLD:
 			print("time fail!")
-			fail()
+			fail(p, "none")
