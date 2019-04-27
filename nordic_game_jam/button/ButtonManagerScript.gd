@@ -45,7 +45,6 @@ func _init():
 			buttons[id] = button;
 			preps[id] = null;
 			add_child(button);
-	prepare_key("0", "left", 2000);
 
 func prepare_key(player, key, time):
 	preps[to_id(player, key)] = time;
