@@ -18,10 +18,12 @@ const NUM_MATCHES = 5
 const THRESHOLD = 40000
 
 
-func _ready():
+func on_gain_focus():
 	player1_node.play("unpressed")
 	player2_node.play("unpressed")
 
+func on_lose_focus():
+	pass
 
 func miss():
 	num_current_matches = 0
