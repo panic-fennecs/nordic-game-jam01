@@ -618,9 +618,11 @@ tracks/15/keys = {
 }
 
 [node name="Character" type="Node2D"]
-editor/display_folded = true
 position = Vector2( 200, 500 )
 script = ExtResource( 1 )
+
+[node name="EmoteSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 0, -330 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
