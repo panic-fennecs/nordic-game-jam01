@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://res/images/stick_figure.png" type="Texture" id=1]
-[ext_resource path="res://res/images/stick_body.png" type="Texture" id=2]
-[ext_resource path="res://res/images/stick_head.png" type="Texture" id=3]
-[ext_resource path="res://res/images/stick_UpperArm.png" type="Texture" id=4]
-[ext_resource path="res://res/images/stick_LowerArm.png" type="Texture" id=5]
-[ext_resource path="res://res/images/stick_hand.png" type="Texture" id=6]
-[ext_resource path="res://res/images/stick_UpperLeg.png" type="Texture" id=7]
-[ext_resource path="res://res/images/stick_LowerLeg.png" type="Texture" id=8]
+[ext_resource path="res://character/Character.gd" type="Script" id=1]
+[ext_resource path="res://res/images/stick_figure.png" type="Texture" id=2]
+[ext_resource path="res://res/images/stick_body.png" type="Texture" id=3]
+[ext_resource path="res://res/images/stick_head.png" type="Texture" id=4]
+[ext_resource path="res://res/images/stick_UpperArm.png" type="Texture" id=5]
+[ext_resource path="res://res/images/stick_LowerArm.png" type="Texture" id=6]
+[ext_resource path="res://res/images/stick_hand.png" type="Texture" id=7]
+[ext_resource path="res://res/images/stick_UpperLeg.png" type="Texture" id=8]
+[ext_resource path="res://res/images/stick_LowerLeg.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "base"
@@ -619,11 +620,12 @@ tracks/15/keys = {
 [node name="Character" type="Node2D"]
 editor/display_folded = true
 position = Vector2( 200, 500 )
+script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.145098 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -631,12 +633,12 @@ __meta__ = {
 [node name="Body" type="Sprite" parent="."]
 position = Vector2( 0.0205841, 78.9287 )
 z_index = -1
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 offset = Vector2( -0.0205841, -125.929 )
 
 [node name="Head" type="Sprite" parent="Body"]
 position = Vector2( 0, -281.684 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 offset = Vector2( 0.333542, -73.3159 )
 __meta__ = {
 "_edit_bone_": true
@@ -651,7 +653,7 @@ __meta__ = {
 [node name="ArmR" type="Sprite" parent="Body"]
 position = Vector2( 0, -240.641 )
 z_as_relative = false
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 offset = Vector2( -0.0727921, 48.6414 )
 __meta__ = {
 "_edit_ik_": true
@@ -660,7 +662,7 @@ __meta__ = {
 [node name="LowerArmR" type="Sprite" parent="Body/ArmR"]
 position = Vector2( 0, 94.027 )
 z_index = -1
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 offset = Vector2( 0.166115, 60.9725 )
 __meta__ = {
 "_edit_bone_": true,
@@ -671,7 +673,7 @@ __meta__ = {
 position = Vector2( 0, 111.893 )
 z_index = 1
 z_as_relative = false
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 offset = Vector2( -0.100372, 20.1072 )
 __meta__ = {
 "_edit_bone_": true
@@ -687,7 +689,7 @@ __meta__ = {
 position = Vector2( 0, -240.641 )
 z_index = -2
 z_as_relative = false
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 offset = Vector2( -0.0727921, 48.6414 )
 __meta__ = {
 "_edit_ik_": true
@@ -696,7 +698,7 @@ __meta__ = {
 [node name="LowerArmL" type="Sprite" parent="Body/ArmL"]
 position = Vector2( 0, 93.027 )
 z_index = -1
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 offset = Vector2( 0.166115, 60.9725 )
 __meta__ = {
 "_edit_bone_": true,
@@ -705,7 +707,7 @@ __meta__ = {
 
 [node name="HandL" type="Sprite" parent="Body/ArmL/LowerArmL"]
 position = Vector2( 0, 111.893 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 offset = Vector2( -0.100372, 20.1072 )
 __meta__ = {
 "_edit_bone_": true
@@ -721,7 +723,7 @@ __meta__ = {
 [node name="LegR" type="Sprite" parent="Body"]
 position = Vector2( 0, 2.773 )
 z_as_relative = false
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 offset = Vector2( 0.232635, 77.2266 )
 __meta__ = {
 "_edit_ik_": true
@@ -729,7 +731,7 @@ __meta__ = {
 
 [node name="LowerLegR" type="Sprite" parent="Body/LegR"]
 position = Vector2( 0, 166.001 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 offset = Vector2( -0.0387344, 80.9989 )
 __meta__ = {
 "_edit_bone_": true
@@ -745,7 +747,7 @@ __meta__ = {
 position = Vector2( 0, 2.773 )
 z_index = -2
 z_as_relative = false
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 offset = Vector2( 0.232635, 77.2266 )
 __meta__ = {
 "_edit_ik_": true
@@ -753,7 +755,7 @@ __meta__ = {
 
 [node name="LowerLegL" type="Sprite" parent="Body/LegL"]
 position = Vector2( 0, 164.001 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 offset = Vector2( -0.0387344, 80.9989 )
 __meta__ = {
 "_edit_bone_": true
