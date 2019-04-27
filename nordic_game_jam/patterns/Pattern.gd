@@ -18,6 +18,7 @@ func _init(h):
 	self.hits = h
 
 static func choose(arr):
+	randomize()
 	return arr[randi() % len(arr)]
 
 static func get_next_timestamp(start_timestamp, timestep_interval, time_offset):

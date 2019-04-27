@@ -27,7 +27,7 @@ func _init():
 
 			var screenx = dim.x;
 			var screeny = dim.y;
-			var button_size = 64;
+			var button_size = 128;
 
 			var posx = screenx / 4;
 			if player == "1":
@@ -59,9 +59,9 @@ func _process(_delta):
 		var x = preps[i];
 		var sizefactor = 0;
 		if x != null:
-			sizefactor = (ct - x) / PREP_DELTA;
+			sizefactor = float(ct - x) / PREP_DELTA;
 			if sizefactor > 1:
 				sizefactor = 1;
 			if sizefactor < 0:
 				sizefactor = 0;
-		buttons[i].get_child(0).scale.y = sizefactor;
+		buttons[i].get_child(0).scale = Vector2(sizefactor, sizefactor);
