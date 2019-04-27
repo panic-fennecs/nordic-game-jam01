@@ -32,7 +32,7 @@ func reset_player_inputs():
 
 func choose_and_remove(arr):
 	var v = arr[randi() % len(arr)]
-	arr.remove(v)
+	arr.erase(v)
 	return v
 
 func generate_forbidden():
