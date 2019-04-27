@@ -33,3 +33,9 @@ func _input(ev):
 func clear():
 	player1_inputs.clear()
 	player2_inputs.clear()
+
+func get_inputs(x):
+	x = str(x);
+	if x == "0": return player1_inputs
+	elif x == "1": return player2_inputs
+	assert(false)
