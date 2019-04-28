@@ -25,7 +25,8 @@ var active = false
 
 func _ready():
 	get_node("Character1/AnimationPlayer").play("dance")
-	get_node("Character2/AnimationPlayer").play("dance")
+	get_node("Character2/AnimationPlayer").play("rave")
+	get_node("Character2").set_scale(Vector2(-0.5, 0.5))
 	$UnhideTimer.connect("timeout", self, "unhide_buttons")
 	$RehideTimer.connect("timeout", self, "new_forbidden")
 
@@ -87,6 +88,7 @@ func next_round():
 func unhide_buttons():
 	for b in bm.buttons.values():
 		b.show_bomb(false)
+
 
 
 func on_gain_focus():
