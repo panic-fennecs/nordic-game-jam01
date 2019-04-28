@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://message_box/MessageBox.gd" type="Script" id=1]
+[ext_resource path="res://res/fonts/Square.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
 
 [node name="MessageBox" type="Node2D"]
 script = ExtResource( 1 )
@@ -12,7 +16,9 @@ margin_left = 483.109
 margin_top = 66.2326
 margin_right = 851.109
 margin_bottom = 228.233
-text = "Heyhey Das ist ein Test text"
+custom_fonts/font = SubResource( 1 )
+text = "
+"
 align = 1
 
 [node name="Timer" type="Timer" parent="."]
