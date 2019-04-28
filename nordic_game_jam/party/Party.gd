@@ -17,13 +17,16 @@ var player2_forbidden = []
 var disabled = false
 
 const THRESHOLD = 60
+const DEBUFF_VALUE = -30
+const BUFF_VALUE = 60
 
 var active = false
 
 
 func _ready():
 	get_node("Character1/AnimationPlayer").play("dance")
-	get_node("Character2/AnimationPlayer").play("dance")
+	get_node("Character2/AnimationPlayer").play("rave")
+	get_node("Character2").set_scale(Vector2(-0.5, 0.5))
 	$UnhideTimer.connect("timeout", self, "unhide_buttons")
 	$RehideTimer.connect("timeout", self, "new_forbidden")
 
@@ -72,7 +75,7 @@ func hide_forbidden():
 		keys.append(bm.to_id(1, i))
 
 	for k in keys:
-		bm.buttons[k].set_visible(false)
+		bm.buttons[k].show_bomb(true)
 
 	$UnhideTimer.start()
 
@@ -84,17 +87,20 @@ func next_round():
 
 func unhide_buttons():
 	for b in bm.buttons.values():
-		b.set_visible(true)
+		b.show_bomb(false)
+
 
 
 func on_gain_focus():
 	active = true
 	reset_player_inputs()
 	message_box.show_text("Press the same key together.")
+	get_node("/root/Main/UILayer/AffectionBar").hide_border()
 
 func on_lose_focus():
 	active = false
 	unhide_buttons()
+	get_node("/root/Main/UILayer/AffectionBar").show_border()
 
 func miss(player_num):
 	reset_player_inputs()
@@ -105,6 +111,9 @@ func miss(player_num):
 		$Character1.spawn_emote("miss")
 	else:
 		$Character2.spawn_emote("miss")
+
+	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 0)
+	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 1)
 
 	next_round()
 
@@ -128,8 +137,14 @@ func strike(key):
 		$Character1.spawn_emote("love")
 		$Character2.spawn_emote("love")
 
+		get_node("/root/Main/UILayer/AffectionBar").modify_player_value(BUFF_VALUE, 0)
+		get_node("/root/Main/UILayer/AffectionBar").modify_player_value(BUFF_VALUE, 1)
+
 		bm.buttons[bm.to_id(0, key)].succeed()
 		bm.buttons[bm.to_id(1, key)].succeed()
+	else:
+		get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 0)
+		get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 1)
 
 	next_round()
 
@@ -176,12 +191,12 @@ func _input(event):
 	var current_time = get_current_time()
 	if event is InputEventKey:
 		if event.pressed and not event.echo:
-			if event.scancode in input_manager.PLAYER1_INPUTS:
+			if event.scancode in input_manager.PLAYER0_INPUTS:
 				last_input1 = current_time
-				last_key1 = input_manager.PLAYER1_INPUTS[event.scancode]
-			elif event.scancode in input_manager.PLAYER2_INPUTS:
+				last_key1 = input_manager.PLAYER0_INPUTS[event.scancode]
+			elif event.scancode in input_manager.PLAYER1_INPUTS:
 				last_input2 = current_time
-				last_key2 = input_manager.PLAYER2_INPUTS[event.scancode]
+				last_key2 = input_manager.PLAYER1_INPUTS[event.scancode]
 
 
 func get_current_time():

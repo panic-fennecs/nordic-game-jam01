@@ -14,12 +14,13 @@ centered = false
 
 [node name="Character1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 329.162, 351.478 )
+is_player_0 = true
 
 [node name="Character2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 975.484, 350.422 )
 
 [node name="UnhideTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true
 
 [node name="RehideTimer" type="Timer" parent="."]

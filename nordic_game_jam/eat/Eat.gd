@@ -8,6 +8,10 @@ const BLACKLIST_THRESHOLD = 200;
 const BLACKLIST_LEN = 10;
 const THRESHOLD = 100;
 
+const SMALL_WIN_VALUE = 5;
+const WIN_VALUE = 10;
+const LOSE_VALUE = -5;
+
 var blacklist = []
 var current_pattern = []
 var waiting_for_player = null
@@ -22,7 +26,7 @@ func restart():
 	pattern_visuals = []
 
 func on_gain_focus():
-	info("find an equal rhythm!")
+	info("play the same melody!")
 	active = true
 	restart()
 
@@ -31,6 +35,12 @@ func on_lose_focus():
 
 func info(x):
 	get_node("/root/Main/UILayer/MessageBox").show_text(x)
+
+func fail(x):
+	info(x)
+	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(LOSE_VALUE, 0)
+	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(LOSE_VALUE, 1)
+	restart()
 
 func blacklisted(pattern):
 	for p in blacklist:
@@ -67,34 +77,39 @@ func _process(_delta):
 				return
 	else:
 		if len(im.get_inputs(1 - waiting_for_player)) > 0:
-			info("didn't react!")
-			restart()
+			fail("thats not simultaneous!")
 			return
 		var i = im.get_inputs(waiting_for_player)
 		if len(i) > 0:
 			var x = i.pop_front();
 			if current_pattern.back().input != x.input:
-				info("wrong key!")
-				restart()
+				bm.buttons[bm.to_id(waiting_for_player, x.input)].failed()
+				bm.buttons[bm.to_id(1 - waiting_for_player, current_pattern.back().input)].failed()
+				fail("thats not the same tune!")
 				return
 			else:
+				bm.buttons[bm.to_id(0, x.input)].succeed()
+				bm.buttons[bm.to_id(1, x.input)].succeed()
+				get_node("/root/Main/UILayer/AffectionBar").modify_player_value(SMALL_WIN_VALUE, 0)
+				get_node("/root/Main/UILayer/AffectionBar").modify_player_value(SMALL_WIN_VALUE, 1)
 				info("good!")
 				waiting_for_player = null
 				if len(current_pattern) >= 4:
 					if blacklisted(current_pattern):
-						info("not that again!")
-						restart()
+						fail("not that melody again!")
 						return
 					else:
 						blacklist.append(current_pattern)
 						if len(blacklist) > BLACKLIST_LEN:
 							blacklist.pop_front();
 						info("nice!")
+						get_node("/root/Main/UILayer/AffectionBar").modify_player_value(WIN_VALUE, 0)
+						get_node("/root/Main/UILayer/AffectionBar").modify_player_value(WIN_VALUE, 1)
 						get_node("/root/Main").next_scene()
 						return
 		elif current_pattern.back().time < im.get_current_time() - THRESHOLD:
-			info("timeout!")
-			restart()
+			bm.buttons[bm.to_id(1 - waiting_for_player, current_pattern.back().input)].failed()
+			fail("thats not simultaneous!")
 			return
 
 

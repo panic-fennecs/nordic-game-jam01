@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://res/images/button_a.png" type="Texture" id=1]
 [ext_resource path="res://res/images/button_d.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://res/images/button_arrow_Down.png" type="Texture" id=8]
 [ext_resource path="res://button/Button.gd" type="Script" id=9]
 [ext_resource path="res://res/button/yellow_back.png" type="Texture" id=10]
+[ext_resource path="res://res/images/bomb.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -63,7 +64,6 @@ animations = [ {
 } ]
 
 [node name="ButtonNode" type="AnimatedSprite"]
-modulate = Color( 0.878431, 0.807843, 0.807843, 1 )
 z_index = 1
 frames = SubResource( 1 )
 animation = "p0_left"
@@ -85,6 +85,11 @@ modulate = Color( 0.180392, 0.588235, 0.0666667, 1 )
 z_index = -1
 frames = SubResource( 2 )
 
+[node name="BlackBack" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.678431 )
+z_index = -2
+texture = ExtResource( 10 )
+
 [node name="RedTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
@@ -92,4 +97,10 @@ one_shot = true
 [node name="GreenTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="Bomb" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1.69592, -4.67968 )
+scale = Vector2( 0.373483, 0.360611 )
+texture = ExtResource( 11 )
 
