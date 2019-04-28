@@ -2,6 +2,7 @@ extends AudioStreamPlayer
 
 var success_sound = preload("res://audio/sfx_good.ogg")
 var failed_sound = preload("res://audio/sfx_bad.ogg")
+var rewind_sound = preload("res://audio/rewind.ogg")
 
 var players = []
 
@@ -26,3 +27,6 @@ func play_success():
 
 func play_failed():
 	playStream(failed_sound)
+
+func play_rewind():
+	playStream(rewind_sound)

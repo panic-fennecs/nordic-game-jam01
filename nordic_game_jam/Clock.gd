@@ -4,11 +4,14 @@ const CLOCK_BACKGROUND_COLOR = Color(1.0, 1.0, 1.0)
 const CLOCK_OUTLINE_COLOR = Color(0.0, 0.0, 0.0)
 const CLOCK_PROGRESS_COLOR = Color(1.0, 0.0, 0.0)
 
+onready var audio_player = get_node("/root/Main/AudioStreamPlayer")
+
 func _ready() -> void:
 	$FreeTimeTimer.connect("timeout", self, "on_day_over")
 	position.x = get_viewport_rect().size.x / 2
 	
 func on_day_over() -> void:
+	audio_player.play_rewind()
 	get_node("/root/Main").on_day_over()
 
 func _process(_delta: float) -> void:
