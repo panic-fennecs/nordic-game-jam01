@@ -26,7 +26,7 @@ func restart():
 	pattern_visuals = []
 
 func on_gain_focus():
-	info("play the same melody!")
+	info("play the same 4-button melody!")
 	active = true
 	restart()
 	get_node("Character1/Bottle").set_visible(true)
