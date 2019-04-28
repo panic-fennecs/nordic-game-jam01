@@ -35,4 +35,3 @@ position = Vector2( 0, 184 )
 
 [node name="AudioController" parent="." instance=ExtResource( 8 )]
 
-[connection signal="day_over" from="UILayer/Clock" to="AudioController" method="_on_day_over"]
