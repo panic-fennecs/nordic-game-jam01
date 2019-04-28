@@ -3,6 +3,7 @@ extends Node2D
 onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 onready var message_box = get_node("/root/Main/UILayer/MessageBox")
+onready var audio_player = get_node("/root/Main/AudioStreamPlayer")
 
 const MAX_NOTE_DIST = 20;
 const THRESHOLD = 500;
@@ -56,6 +57,7 @@ func fail(player, key):
 	restart()
 
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, player)
+	audio_player.play_failed()
 
 func small_win(player, key):
 	if key == "none":
@@ -64,7 +66,7 @@ func small_win(player, key):
 		var button_id = bm.to_id(player, key)
 		bm.buttons[button_id].succeed()
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(BUFF_VALUE, player)
-
+	audio_player.play_success()
 
 func win():
 	im.clear();

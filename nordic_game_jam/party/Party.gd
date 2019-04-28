@@ -4,6 +4,7 @@ extends Node2D
 onready var input_manager = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 onready var message_box = get_node("/root/Main/UILayer/MessageBox")
+onready var audio_player = get_node("/root/Main/AudioStreamPlayer")
 
 var last_input1 = 0
 var last_input2 = 0
@@ -86,8 +87,6 @@ func unhide_buttons():
 	for b in bm.buttons.values():
 		b.show_bomb(false)
 
-
-
 func on_gain_focus():
 	active = true
 	reset_player_inputs()
@@ -118,6 +117,7 @@ func miss(player_num):
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 0)
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 1)
 
+	audio_player.play_failed()
 	next_round()
 
 
@@ -145,9 +145,13 @@ func strike(key):
 
 		bm.buttons[bm.to_id(0, key)].succeed()
 		bm.buttons[bm.to_id(1, key)].succeed()
+		
+		audio_player.play_success()
 	else:
 		get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 0)
 		get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 1)
+		
+		audio_player.play_failed()
 
 	next_round()
 
