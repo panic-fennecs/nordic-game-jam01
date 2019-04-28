@@ -5,6 +5,8 @@ var day_index = 0
 var player_0_hair
 var player_1_hair
 
+var blacklist = []
+
 var scene_list_prefabs = [
 	load("res://sleep/SleepScene.tscn"),
 	load("res://eat/EatScene.tscn"),

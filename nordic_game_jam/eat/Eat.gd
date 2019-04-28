@@ -4,7 +4,10 @@ onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 onready var sprite_prefab = load("eat/Marker.tscn")
 
-const BLACKLIST_THRESHOLD = 200
+func bl():
+	return get_node("/root/Main").blacklist
+
+const BLACKLIST_THRESHOLD = 500
 const BLACKLIST_LEN = 10
 const THRESHOLD = 100
 
@@ -12,7 +15,6 @@ const SMALL_WIN_VALUE = 5;
 const WIN_VALUE = 10;
 const LOSE_VALUE = -5;
 
-var blacklist = []
 var current_pattern = []
 var waiting_for_player = null
 var active = false
@@ -52,7 +54,7 @@ func fail(x):
 	restart()
 
 func blacklisted(pattern):
-	for p in blacklist:
+	for p in bl():
 		if len(p) != len(pattern):
 			continue
 		var similar = true
@@ -60,12 +62,11 @@ func blacklisted(pattern):
 			if p[i].input != pattern[i].input:
 				similar = false
 				break
-			if abs((p[i].time - p[0].time) - (pattern[i].time - pattern[0].time)) >= BLACKLIST_THRESHOLD:
+			if abs(abs(p[i].time - p[0].time) - abs(pattern[i].time - pattern[0].time)) >= BLACKLIST_THRESHOLD:
 				similar = false
 				break
 		if similar:
 			return true
-		
 	return false
 
 func _process(_delta):
@@ -108,9 +109,9 @@ func _process(_delta):
 						fail("not that melody again!")
 						return
 					else:
-						blacklist.append(current_pattern)
-						if len(blacklist) > BLACKLIST_LEN:
-							blacklist.pop_front();
+						bl().append(current_pattern)
+						if len(bl()) > BLACKLIST_LEN:
+							bl().pop_front();
 						subinfo("nice!")
 						get_node("/root/Main/UILayer/AffectionBar").modify_player_value(WIN_VALUE, 0)
 						get_node("/root/Main/UILayer/AffectionBar").modify_player_value(WIN_VALUE, 1)
