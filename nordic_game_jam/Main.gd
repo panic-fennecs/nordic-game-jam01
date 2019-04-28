@@ -17,7 +17,6 @@ func get_scenes():
 	return get_tree().get_nodes_in_group("dynamic_scenes")
 
 func _ready():
-	$UILayer/Clock.connect("day_over", self, "day_over_signal_received")
 	instantiate_scenes()
 	init_scene()
 
@@ -43,7 +42,7 @@ func next_scene():
 	init_scene()
 	get_node("/root/Main/AudioController")._on_room_changed(scene_index)
 
-func day_over_signal_received():
+func on_day_over():
 	get_scenes()[scene_index].on_lose_focus()
 	day_index += 1
 	scene_index = 0
