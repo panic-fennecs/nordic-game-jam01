@@ -29,5 +29,5 @@ position = Vector2( 316, 470 )
 is_player_0 = true
 
 [node name="Character2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 974, 452 )
+position = Vector2( 974, 470 )
 
