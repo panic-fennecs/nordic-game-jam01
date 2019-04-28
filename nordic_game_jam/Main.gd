@@ -30,7 +30,6 @@ func _ready():
 	player_1_hair = hairs[randi() % hairs.size()]
 	instantiate_scenes()
 	init_scene()
-	
 
 func instantiate_scenes():
 	#test loop for instantiating multiple scenes
