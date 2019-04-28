@@ -54,6 +54,15 @@ func _process(delta: float) -> void:
 			still_pressed_up = true
 			$Label.text = "Try to cooperate with your partner\nto finally break out of the loop."
 		if count == 3:
+			$Sprite.position.y += 150
+			$Sprite2.position.y += 150
+			$Label2.rect_position.y += 150
+			$Label.set_visible(false)
+			$Description.set_visible(true)
+			still_pressed_w = true
+			still_pressed_up = true
+			$Label2.text = "Get ready"
+		if count == 4:
 			get_tree().change_scene("res://Main.tscn")
 	$ColorRect2.modulate.a = sum
 
