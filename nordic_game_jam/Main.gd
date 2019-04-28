@@ -17,10 +17,6 @@ var hairs = [
 	load("res://res/images/stick_head_2.png")
 ]
 
-func _unhandled_key_input(event):
-	if event.pressed and event.scancode == KEY_3:
-		next_scene()
-
 func get_scenes():
 	return get_tree().get_nodes_in_group("dynamic_scenes")
 
