@@ -29,15 +29,19 @@ func on_gain_focus():
 	info("play the same melody!")
 	active = true
 	restart()
+	get_node("Character1/Bottle").set_visible(true)
+	get_node("Character2/Bottle").set_visible(false)
+	get_node("Character1/AnimationPlayer").play("drink")
+	get_node("Character2/AnimationPlayer").play("eat")
 
 func on_lose_focus():
 	active = false
 
 func info(x):
-	get_node("/root/Main/UILayer/MessageBox").show_text(x)
+	get_node("/root/Main/UILayer/MessageBox").show_main_text(x)
 
 func fail(x):
-	info(x)
+	get_node("/root/Main/UILayer/MessageBox").show_sub_text(x)
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(LOSE_VALUE, 0)
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(LOSE_VALUE, 1)
 	restart()
