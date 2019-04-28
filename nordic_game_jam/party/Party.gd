@@ -4,6 +4,7 @@ extends Node2D
 onready var input_manager = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 onready var message_box = get_node("/root/Main/UILayer/MessageBox")
+onready var audio_player = get_node("/root/Main/AudioStreamPlayer")
 
 var last_input1 = 0
 var last_input2 = 0

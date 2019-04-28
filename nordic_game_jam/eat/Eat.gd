@@ -3,6 +3,7 @@ extends Node2D
 onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 onready var sprite_prefab = load("eat/Marker.tscn")
+onready var audio_player = get_node("/root/Main/AudioStreamPlayer")
 
 const BLACKLIST_THRESHOLD = 200
 const BLACKLIST_LEN = 10
