@@ -14,7 +14,7 @@ var player2_forbidden = []
 
 var disabled = false
 
-const THRESHOLD = 40000
+const THRESHOLD = 60
 
 var active = false
 
@@ -184,4 +184,4 @@ func _input(event):
 
 
 func get_current_time():
-	return OS.get_ticks_usec();
+	return OS.get_ticks_msec();
