@@ -17,6 +17,8 @@ func _ready():
 	get_node("Character2/AnimationPlayer").play("sleep")
 	get_node("Character1").set_scale(Vector2(0.5, 0.5))
 	get_node("Character2").set_scale(Vector2(-0.5, 0.5))
+	get_node("Character1/Bottle").set_visible(false)
+	get_node("Character2/Bottle").set_visible(false)
 
 func generate_random(n, start_timestamp, possible_keys):
 	var inst = load("res://patterns/Pattern.gd")

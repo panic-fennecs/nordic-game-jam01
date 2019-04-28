@@ -29,6 +29,10 @@ func on_gain_focus():
 	info("play the same melody!")
 	active = true
 	restart()
+	get_node("Character1/Bottle").set_visible(true)
+	get_node("Character2/Bottle").set_visible(false)
+	get_node("Character1/AnimationPlayer").play("drink")
+	get_node("Character2/AnimationPlayer").play("eat")
 
 func on_lose_focus():
 	active = false

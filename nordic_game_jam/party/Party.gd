@@ -96,6 +96,8 @@ func on_gain_focus():
 	reset_player_inputs()
 	message_box.show_text("Press the same key together.")
 	get_node("/root/Main/UILayer/AffectionBar").hide_border()
+	get_node("Character1/Bottle").set_visible(false)
+	get_node("Character2/Bottle").set_visible(false)
 
 func on_lose_focus():
 	active = false

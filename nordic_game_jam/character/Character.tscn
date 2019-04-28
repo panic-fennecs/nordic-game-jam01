@@ -3110,6 +3110,7 @@ anims/sleep = SubResource( 6 )
 anims/sleep2 = SubResource( 7 )
 
 [node name="Bottle" type="Sprite" parent="."]
+visible = false
 position = Vector2( 112.95, -284.857 )
 rotation = -1.74533
 scale = Vector2( 0.5, 0.5 )
