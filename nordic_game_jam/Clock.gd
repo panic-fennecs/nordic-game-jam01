@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	
 func _draw() -> void:
 	var center: Vector2 = Vector2(0, 0)
-	var radius: int = 80
+	var radius: int = 64
 	var angle_from: int = 0
 	var angle_to: float = 360 - (360 * ($FreeTimeTimer.time_left / $FreeTimeTimer.wait_time))
 	draw_circle(center, radius + 8, CLOCK_OUTLINE_COLOR)
