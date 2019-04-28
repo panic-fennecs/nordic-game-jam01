@@ -44,6 +44,7 @@ func init_scene():
 	$Camera2D.move_to_scene(scene_index)
 
 func next_scene():
+	get_node("/root/Main/UILayer/MessageBox").reset()
 	get_tree().get_nodes_in_group("dynamic_scenes")[scene_index].on_lose_focus()
 	if scene_index == len(get_scenes())-1:
 		day_index += 1
@@ -53,7 +54,9 @@ func next_scene():
 	init_scene()
 	get_node("/root/Main/AudioController")._on_room_changed(scene_index)
 
+
 func on_day_over():
+	get_node("/root/Main/UILayer/MessageBox").reset()
 	get_scenes()[scene_index].on_lose_focus()
 	day_index += 1
 	scene_index = 0

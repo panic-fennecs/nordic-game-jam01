@@ -19,3 +19,7 @@ func on_main_timeout():
 
 func on_sub_timeout():
 	$SubLabel.set_visible(false)
+
+func reset():
+	$MainLabel.set_visible(false)
+	$SubLabel.set_visible(false)
