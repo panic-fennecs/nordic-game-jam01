@@ -56,9 +56,8 @@ func _draw() -> void:
 		else:
 			draw_rect(Rect2(Vector2(0,0), Vector2(BAR_WIDTH, BAR_HEIGHT + BAR_BORDER*2)),Color("#ffcc00"))
 			
-		
 		draw_rect(Rect2(Vector2(BAR_BORDER,BAR_BORDER), Vector2(BAR_BORDER*2, BAR_HEIGHT)),Color(1, 1, 1, 1))
 
 		# draw points
-		draw_rect(Rect2(Vector2(BAR_BORDER,BAR_BORDER), Vector2(BAR_BORDER*2, player_one_factor)),Color("#a6224b"))
-		draw_rect(Rect2(Vector2(BAR_BORDER,BAR_HEIGHT+BAR_BORDER-player_two_factor), Vector2(BAR_BORDER*2, player_two_factor)),Color("#3f2aac"))
+		draw_rect(Rect2(Vector2(BAR_BORDER,BAR_BORDER), Vector2(BAR_BORDER*2, player_one_factor)),Color("#3f2aac"))
+		draw_rect(Rect2(Vector2(BAR_BORDER,BAR_HEIGHT+BAR_BORDER-player_two_factor), Vector2(BAR_BORDER*2, player_two_factor)),Color("#a6224b"))
