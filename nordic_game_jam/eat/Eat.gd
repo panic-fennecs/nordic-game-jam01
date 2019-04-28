@@ -77,7 +77,7 @@ func _process(_delta):
 				return
 	else:
 		if len(im.get_inputs(1 - waiting_for_player)) > 0:
-			fail("didn't react!")
+			fail("thats not simultaneous!")
 			return
 		var i = im.get_inputs(waiting_for_player)
 		if len(i) > 0:
@@ -85,7 +85,7 @@ func _process(_delta):
 			if current_pattern.back().input != x.input:
 				bm.buttons[bm.to_id(waiting_for_player, x.input)].failed()
 				bm.buttons[bm.to_id(1 - waiting_for_player, current_pattern.back().input)].failed()
-				fail("wrong key!")
+				fail("thats not the same tune!")
 				return
 			else:
 				bm.buttons[bm.to_id(0, x.input)].succeed()
@@ -96,7 +96,7 @@ func _process(_delta):
 				waiting_for_player = null
 				if len(current_pattern) >= 4:
 					if blacklisted(current_pattern):
-						fail("not that again!")
+						fail("not that melody again!")
 						return
 					else:
 						blacklist.append(current_pattern)
@@ -109,7 +109,7 @@ func _process(_delta):
 						return
 		elif current_pattern.back().time < im.get_current_time() - THRESHOLD:
 			bm.buttons[bm.to_id(1 - waiting_for_player, current_pattern.back().input)].failed()
-			fail("timeout!")
+			fail("thats not simultaneous!")
 			return
 
 
