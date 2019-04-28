@@ -4,7 +4,7 @@ onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 
 const MAX_NOTE_DIST = 20;
-const THRESHOLD = 200;
+const THRESHOLD = 500;
 const N = 4;
 
 var patterns = null;
@@ -69,32 +69,31 @@ func _process(_delta):
 		var i = im.get_inputs(p);
 		if len(i) > 0 and patterns != null:
 			if i[0].input != patterns[p][0].key:
-				print("wrong key!")
 				if p == 0:
-					$Character1.spawn_emote("wrong")
+					$Character1.spawn_emote("miss")
 				else:
-					$Character2.spawn_emote("wrong")
+					$Character2.spawn_emote("miss")
 				fail(p, i[0].input);
 				return
 			if abs(i[0].time - patterns[p][0].timestamp) >= THRESHOLD:
-				print("thresh!")
 				if p == 0:
-					$Character1.spawn_emote("rested")
+					$Character1.spawn_emote("miss")
 				else:
-					$Character2.spawn_emote("rested")
+					$Character2.spawn_emote("miss")
 				fail(p, i[0].input);
 				return
 			small_win(p, i[0].input)
 			bm.preps[bm.to_id(str(p), i[0].input)].pop_front();
 			i.pop_front();
 			patterns[p].pop_front();
-
-			$Character1.spawn_emote("love")
-			$Character2.spawn_emote("love")
+			
+			if p == 0:
+				$Character1.spawn_emote("rested")
+			else:
+				$Character2.spawn_emote("rested")
 			if len(patterns[0]) == 0 and len(patterns[1]) == 0:
 				win()
 	
 		var ct = im.get_current_time()
 		if patterns != null and len(patterns[p]) > 0 and patterns[p][0].timestamp <= ct - THRESHOLD:
-			print("time fail!")
 			fail(p, "none")
