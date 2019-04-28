@@ -40,6 +40,7 @@ func fail(x):
 	info(x)
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(LOSE_VALUE, 0)
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(LOSE_VALUE, 1)
+	restart()
 
 func blacklisted(pattern):
 	for p in blacklist:
@@ -67,7 +68,6 @@ func _process(_delta):
 			if len(i) > 0:
 				var x = i.pop_front();
 				current_pattern.append({"input": x.input, "time": im.get_current_time()})
-				bm.buttons[bm.to_id(p, x.input)].succeed()
 				waiting_for_player = 1 - p
 				var visu = sprite_prefab.instance();
 				visu.position = Vector2(80 + len(pattern_visuals) * 80, 80);
@@ -84,10 +84,12 @@ func _process(_delta):
 			var x = i.pop_front();
 			if current_pattern.back().input != x.input:
 				bm.buttons[bm.to_id(waiting_for_player, x.input)].failed()
+				bm.buttons[bm.to_id(1 - waiting_for_player, current_pattern.back().input)].failed()
 				fail("wrong key!")
 				return
 			else:
-				bm.buttons[bm.to_id(waiting_for_player, x.input)].succeed()
+				bm.buttons[bm.to_id(0, x.input)].succeed()
+				bm.buttons[bm.to_id(1, x.input)].succeed()
 				get_node("/root/Main/UILayer/AffectionBar").modify_player_value(SMALL_WIN_VALUE, 0)
 				get_node("/root/Main/UILayer/AffectionBar").modify_player_value(SMALL_WIN_VALUE, 1)
 				info("good!")
@@ -106,6 +108,7 @@ func _process(_delta):
 						get_node("/root/Main").next_scene()
 						return
 		elif current_pattern.back().time < im.get_current_time() - THRESHOLD:
+			bm.buttons[bm.to_id(1 - waiting_for_player, current_pattern.back().input)].failed()
 			fail("timeout!")
 			return
 
