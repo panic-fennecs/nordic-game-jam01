@@ -3,24 +3,17 @@ extends Node2D
 onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 
-const STOP_TIME = 1000;
 const THRESHOLD = 300;
 const BLACKLIST_LEN = 10;
 
 var blacklist = []
-var composer = 0
-var state = "compose"
 var current_pattern = []
-var current_full_pattern = null
+var waiting_for_player = null
 var active = false
 
 func restart():
-	randomize()
-	composer = 0 # randi() % 2 # TODO
 	current_pattern = []
-	current_full_pattern = []
-	state = "compose"
-	info("compose!")
+	waiting_for_player = null
 
 func on_gain_focus():
 	active = true
@@ -30,62 +23,66 @@ func on_lose_focus():
 	active = false
 
 func info(x):
-	print("info: ", x)
+	get_node("/root/Main/UILayer/MessageBox").show_text(x)
 
 func blacklisted(pattern):
-	return false
-	# TODO check!
 	for p in blacklist:
 		if len(p) != len(pattern):
 			continue
-		var worked = true
+		var similar = true
 		for i in range(len(p)):
 			if p[i].input != pattern[i].input:
-				worked = false
+				similar = false
 				break
-			if abs(p[i].time - pattern[i].time) >= THRESHOLD:
-				worked = false
+			if abs((p[i].time - p[0].time) - (pattern[i].time - pattern[0].time)) >= THRESHOLD:
+				similar = false
 				break
-		if !worked:
-			continue
+		if similar:
+			return true
 		
 	return false
 
 func _process(_delta):
-	if not active:
-		return
+	if not active: return
 
-	if state == "compose":
-		var i = im.get_inputs(composer)
+	if waiting_for_player == null:
+		for p in [0, 1]:
+			var i = im.get_inputs(p)
+			if len(i) > 0:
+				var x = i.pop_front();
+				current_pattern.append({"input": x.input, "time": im.get_current_time()})
+				waiting_for_player = 1 - p
+	else:
+		if len(im.get_inputs(1 - waiting_for_player)) > 0:
+			info("didn't react!")
+			restart()
+			return
+		var i = im.get_inputs(waiting_for_player)
 		if len(i) > 0:
-			var first = i.pop_front();
-			print("note added")
-			current_pattern.append(first)
-		elif len(current_pattern) > 0 and current_pattern.back().time < im.get_current_time() - STOP_TIME:
-			if blacklisted(current_pattern):
-				info("not that again!")
+			var x = i.pop_front();
+			if current_pattern.back().input != x.input:
+				info("wrong key!")
 				restart()
 				return
-			info("repeat now!")
-			state = "repeat"
-			current_full_pattern = current_pattern.duplicate(true)
-	elif state == "repeat":
-		var i = im.get_inputs(1 - composer)
-		if len(i) > 0:
-			var first = i.pop_front();
-			if current_pattern[0].input != first.input:
-				info("wrong note!")
-				restart()
-				return
-			if abs(current_pattern[0].time - first.time) > THRESHOLD:
-				info("too far away!")
-				restart()
-				return
-			current_pattern.pop_front();
-			if len(current_pattern) == 0:
-				blacklist.append(current_full_pattern);
-				if len(blacklist) > BLACKLIST_LEN:
-					blacklist.pop_front(); 
-				info("nice!")
-				get_node("/root/Main").next_scene()
-				return
+			else:
+				info("good!")
+				waiting_for_player = null
+				if len(current_pattern) >= 4:
+					if blacklisted(current_pattern):
+						info("not that again!")
+						restart()
+						return
+					else:
+						blacklist.append(current_pattern)
+						if len(blacklist) > BLACKLIST_LEN:
+							blacklist.pop_front();
+						info("nice!")
+						get_node("/root/Main").next_scene()
+						return
+					
+
+
+
+
+
+

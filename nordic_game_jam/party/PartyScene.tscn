@@ -18,3 +18,7 @@ position = Vector2( 329.162, 351.478 )
 [node name="Character2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 975.484, 350.422 )
 
+[node name="UnhideTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
