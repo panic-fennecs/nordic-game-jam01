@@ -60,7 +60,6 @@ func fail(player, key):
 	audio_player.play_failed()
 
 func small_win(player, key):
-	get_node("/root/Main/AudioStreamPlayer").play_test_sound()
 	if key == "none":
 		pass
 	else:

@@ -26,6 +26,3 @@ func play_success():
 
 func play_failed():
 	playStream(failed_sound)
-
-func play_test_sound():
-	playStream(test_sound)

@@ -51,6 +51,7 @@ func fail(x):
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(LOSE_VALUE, 0)
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(LOSE_VALUE, 1)
 	restart()
+	audio_player.play_failed()
 
 func blacklisted(pattern):
 	for p in blacklist:
@@ -100,6 +101,7 @@ func _process(_delta):
 			else:
 				bm.buttons[bm.to_id(0, x.input)].succeed()
 				bm.buttons[bm.to_id(1, x.input)].succeed()
+				audio_player.play_success()
 				get_node("/root/Main/UILayer/AffectionBar").modify_player_value(SMALL_WIN_VALUE, 0)
 				get_node("/root/Main/UILayer/AffectionBar").modify_player_value(SMALL_WIN_VALUE, 1)
 				subinfo("good!")
