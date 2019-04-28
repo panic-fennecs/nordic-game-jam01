@@ -74,7 +74,7 @@ func hide_forbidden():
 		keys.append(bm.to_id(1, i))
 
 	for k in keys:
-		bm.buttons[k].set_visible(false)
+		bm.buttons[k].show_bomb(true)
 
 	$UnhideTimer.start()
 
@@ -86,7 +86,7 @@ func next_round():
 
 func unhide_buttons():
 	for b in bm.buttons.values():
-		b.set_visible(true)
+		b.show_bomb(false)
 
 
 func on_gain_focus():

@@ -17,3 +17,6 @@ func _on_unfail_timeout():
 
 func _on_unsuccess_timeout():
 	$GreenBack.set_visible(false)
+
+func show_bomb(v):
+	$Bomb.set_visible(v)
