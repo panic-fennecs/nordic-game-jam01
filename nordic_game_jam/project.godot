@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="nordic_game_jam"
 run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://res/images/icon.png"
 
 [display]
 
