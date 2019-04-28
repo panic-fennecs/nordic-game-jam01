@@ -16,9 +16,11 @@ func _ready() -> void:
 
 func show_border():
 	is_border_visible = true
+	update()
 
 func hide_border():
 	is_border_visible = false
+	update()
 
 ''' value should be int between -100 and 100, player 0 is red and top, player 1 is blue and bottom '''
 func modify_player_value(value: int, player: int):
