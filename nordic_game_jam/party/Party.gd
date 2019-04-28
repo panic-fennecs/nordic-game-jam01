@@ -90,6 +90,7 @@ func on_gain_focus():
 
 func on_lose_focus():
 	active = false
+	unhide_buttons()
 
 func miss(player_num):
 	print("miss ", player_num)
