@@ -63,7 +63,6 @@ animations = [ {
 } ]
 
 [node name="ButtonNode" type="AnimatedSprite"]
-modulate = Color( 0.878431, 0.807843, 0.807843, 1 )
 z_index = 1
 frames = SubResource( 1 )
 animation = "p0_left"
@@ -84,6 +83,11 @@ visible = false
 modulate = Color( 0.180392, 0.588235, 0.0666667, 1 )
 z_index = -1
 frames = SubResource( 2 )
+
+[node name="BlackBack" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.678431 )
+z_index = -2
+texture = ExtResource( 10 )
 
 [node name="RedTimer" type="Timer" parent="."]
 wait_time = 0.3
