@@ -31,6 +31,8 @@ func on_gain_focus():
 	restart()
 	get_node("Character1/Bottle").set_visible(true)
 	get_node("Character2/Bottle").set_visible(false)
+	get_node("Character1/Apple").set_visible(false)
+	get_node("Character2/Apple").set_visible(true)
 	get_node("Character1/AnimationPlayer").play("drink")
 	get_node("Character2/AnimationPlayer").play("eat")
 
