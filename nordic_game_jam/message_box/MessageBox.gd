@@ -9,7 +9,7 @@ func show_main_text(text):
 	$MainLabelRight.text = text
 	$MainLabelLeft.set_visible(true)
 	$MainLabelRight.set_visible(true)
-	$MainTimer.start()
+	# $MainTimer.start()
 
 func show_sub_text(text):
 	$SubLabelLeft.text = text
