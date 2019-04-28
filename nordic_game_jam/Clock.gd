@@ -11,6 +11,7 @@ func _ready() -> void:
 	position.x = get_viewport_rect().size.x / 2
 	
 func _day_over() -> void:
+	$FreeTimeTimer.start()
 	emit_signal("day_over")
 	
 func _process(delta: float) -> void:
@@ -40,3 +41,6 @@ func draw_circle_arc_poly(center: Vector2, radius: int, angle_from: int, angle_t
 	    var angle_point: float = deg2rad(angle_from + i * float(angle_to - angle_from) / nb_points - 90)
 	    points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
 	draw_polygon(points_arc, colors)
+
+func on_game_started():
+	_day_over()

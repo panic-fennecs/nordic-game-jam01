@@ -21,14 +21,23 @@ func get_current_time():
 	return OS.get_ticks_msec();
 
 func _input(ev):
+	var introduction = get_tree().get_root().get_node("Main/UILayer/Introduction")
+	var is_running = get_tree().get_root().get_node("Main").is_running
+	
 	var ct = get_current_time();
 	if ev is InputEventKey and ev.pressed and !ev.echo:
 		if ev.scancode in PLAYER1_INPUTS:
-			var entry = {"time": ct, "input": PLAYER1_INPUTS[ev.scancode]};
-			player1_inputs.append(entry);
+			if is_running:
+				var entry = {"time": ct, "input": PLAYER1_INPUTS[ev.scancode]};
+				player1_inputs.append(entry);
+			else:
+				introduction.close()
 		if ev.scancode in PLAYER2_INPUTS:
-			var entry = {"time": ct, "input": PLAYER2_INPUTS[ev.scancode]};
-			player2_inputs.append(entry);
+			if is_running:
+				var entry = {"time": ct, "input": PLAYER2_INPUTS[ev.scancode]};
+				player2_inputs.append(entry);
+			else:
+				introduction.close()
 
 func clear():
 	player1_inputs.clear()

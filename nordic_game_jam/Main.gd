@@ -3,6 +3,10 @@ extends Node2D
 var scene_index = 0
 var day_index = 0
 
+export var is_running: bool = false
+
+
+
 var scene_list_prefabs = [
 	load("res://sleep/SleepScene.tscn"),
 	load("res://eat/EatScene.tscn"),
@@ -19,7 +23,6 @@ func get_scenes():
 func _ready():
 	$UILayer/Clock.connect("day_over", self, "day_over_signal_received")
 	instantiate_scenes()
-	init_scene()
 	
 func instantiate_scenes():
 	#test loop for instantiating multiple scenes
@@ -29,9 +32,9 @@ func instantiate_scenes():
 		add_child(next_scene)
 		next_scene.add_to_group("dynamic_scenes")
 
-func init_scene():
+func init_scene(tutorial = false):
 	get_tree().get_nodes_in_group("dynamic_scenes")[scene_index].on_gain_focus()
-	$Camera2D.move_to_scene(scene_index)
+	$Camera2D.move_to_scene(scene_index, tutorial)
 
 func next_scene():
 	get_tree().get_nodes_in_group("dynamic_scenes")[scene_index].on_lose_focus()
@@ -49,8 +52,10 @@ func day_over_signal_received():
 	scene_index = 0
 	remove_old_scenes()
 	instantiate_scenes()
-	init_scene()
+	init_scene(!is_running)
 	get_node("/root/Main/AudioController")._on_room_changed(scene_index)
+	if !is_running:
+		is_running = true
 
 func remove_old_scenes():
 	for scene in get_scenes():
