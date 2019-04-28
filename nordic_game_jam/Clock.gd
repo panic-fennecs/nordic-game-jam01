@@ -11,7 +11,7 @@ func _ready() -> void:
 func on_day_over() -> void:
 	get_node("/root/Main").on_day_over()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update()
 	
 func _draw() -> void:
