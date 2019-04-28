@@ -9,6 +9,8 @@ func _ready() -> void:
 	$Body/Head.texture = main.player_0_hair if is_player_0 else main.player_1_hair
 
 func spawn_emote(emote_type: String) -> void:
+	if emote_type == "miss": return
+	
 	var emote = emote_scene.instance()
 	emote.set_emote_type(emote_type)
 	emote.position = $EmoteSpawnPoint.position
