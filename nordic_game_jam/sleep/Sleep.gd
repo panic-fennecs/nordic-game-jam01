@@ -6,6 +6,8 @@ onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 const MAX_NOTE_DIST = 20;
 const THRESHOLD = 500;
 const N = 4;
+const BUFF_VALUE = 10
+const DEBUFF_VALUE = -5
 
 var patterns = null;
 var active = false;
@@ -47,12 +49,17 @@ func fail(player, key):
 		bm.buttons[button_id].failed()
 	restart()
 
+	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 0)
+	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 1)
+
 func small_win(player, key):
 	if key == "none":
 		pass
 	else:
 		var button_id = bm.to_id(player, key)
 		bm.buttons[button_id].succeed()
+	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(BUFF_VALUE, 0)
+	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(BUFF_VALUE, 1)
 
 
 func win():
