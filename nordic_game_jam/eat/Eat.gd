@@ -4,9 +4,9 @@ onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 onready var sprite_prefab = load("eat/Marker.tscn")
 
-const BLACKLIST_THRESHOLD = 200;
-const BLACKLIST_LEN = 10;
-const THRESHOLD = 100;
+const BLACKLIST_THRESHOLD = 200
+const BLACKLIST_LEN = 10
+const THRESHOLD = 100
 
 const SMALL_WIN_VALUE = 5;
 const WIN_VALUE = 10;
