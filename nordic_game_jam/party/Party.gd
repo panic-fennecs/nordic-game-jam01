@@ -98,6 +98,8 @@ func on_gain_focus():
 	get_node("/root/Main/UILayer/AffectionBar").hide_border()
 	get_node("Character1/Bottle").set_visible(false)
 	get_node("Character2/Bottle").set_visible(false)
+	get_node("Character1/Apple").set_visible(false)
+	get_node("Character2/Apple").set_visible(false)
 
 func on_lose_focus():
 	active = false
