@@ -16,7 +16,7 @@ var player2_forbidden = []
 
 var disabled = false
 
-const THRESHOLD = 60
+const THRESHOLD = 100
 const DEBUFF_VALUE = -30
 const BUFF_VALUE = 60
 
