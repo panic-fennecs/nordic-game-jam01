@@ -39,6 +39,7 @@ func modify_player_value(value: int, player: int):
 	
 	if player_one_value + player_two_value >= MAX_POINTS:
 		is_finished = true
+		get_tree().change_scene("res://EndScene.tscn")
 	
 	update()
 
