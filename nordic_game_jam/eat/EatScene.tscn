@@ -14,8 +14,8 @@ centered = false
 
 [node name="Character1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 350, 353 )
+is_player_0 = true
 
 [node name="Character2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 816, 310 )
-is_player_0 = true
 

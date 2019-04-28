@@ -20,10 +20,10 @@ is_player_0 = true
 position = Vector2( 975.484, 350.422 )
 
 [node name="UnhideTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true
 
 [node name="RehideTimer" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 1.2
 one_shot = true
 

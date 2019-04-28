@@ -25,7 +25,8 @@ var active = false
 
 func _ready():
 	get_node("Character1/AnimationPlayer").play("dance")
-	get_node("Character2/AnimationPlayer").play("dance")
+	get_node("Character2/AnimationPlayer").play("rave")
+	get_node("Character2").set_scale(Vector2(-0.5, 0.5))
 	$UnhideTimer.connect("timeout", self, "unhide_buttons")
 	$RehideTimer.connect("timeout", self, "new_forbidden")
 
@@ -45,7 +46,7 @@ func choose_and_remove(arr):
 func new_forbidden():
 	if first_hides:
 		first_hides = false
-		message_box.show_text("except...")
+		message_box.show_main_text("except...")
 	generate_forbidden()
 	hide_forbidden()
 	disabled = false
@@ -74,7 +75,7 @@ func hide_forbidden():
 		keys.append(bm.to_id(1, i))
 
 	for k in keys:
-		bm.buttons[k].set_visible(false)
+		bm.buttons[k].show_bomb(true)
 
 	$UnhideTimer.start()
 
@@ -86,14 +87,17 @@ func next_round():
 
 func unhide_buttons():
 	for b in bm.buttons.values():
-		b.set_visible(true)
+		b.show_bomb(false)
+
 
 
 func on_gain_focus():
 	active = true
 	reset_player_inputs()
-	message_box.show_text("Press the same key together.")
+	message_box.show_main_text("Press the same key together.")
 	get_node("/root/Main/UILayer/AffectionBar").hide_border()
+	get_node("Character1/Bottle").set_visible(false)
+	get_node("Character2/Bottle").set_visible(false)
 
 func on_lose_focus():
 	active = false
@@ -121,15 +125,15 @@ func strike(key):
 
 	var forb = false
 	if (key in player1_forbidden):
-		message_box.show_text("Could not use this Key (player 1)")
+		message_box.show_sub_text("Could not use this Key (player 1)")
 		$Character1.spawn_emote("miss")
 		forb = true
-		bm.buttons[bm.to_id(0, key)].failed()
+		bm.buttons[bm.to_id(0, key)].show_bomb_timed()
 	if (key in player2_forbidden):
-		message_box.show_text("Could not use this Key (player 2)")
+		message_box.show_sub_text("Could not use this Key (player 2)")
 		$Character2.spawn_emote("miss")
 		forb = true
-		bm.buttons[bm.to_id(1, key)].failed()
+		bm.buttons[bm.to_id(1, key)].show_bomb_timed()
 
 	if not forb:
 		$Character1.spawn_emote("love")
@@ -160,7 +164,7 @@ func _process(_delta):
 			miss(0)
 		else:
 			if last_key1 != last_key2:
-				message_box.show_text("Press the same key")
+				message_box.show_main_text("Press the same key")
 				bm.buttons[bm.to_id(0, last_key1)].failed()
 				bm.buttons[bm.to_id(1, last_key2)].failed()
 				miss(0)
