@@ -2,6 +2,7 @@ extends Node2D
 
 onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
+onready var message_box = get_node("/root/Main/UILayer/MessageBox")
 
 const MAX_NOTE_DIST = 20;
 const THRESHOLD = 500;
@@ -36,6 +37,7 @@ func restart():
 func on_gain_focus():
 	active = true;
 	restart()
+	message_box.show_main_text("Press the highlighted keys")
 
 func on_lose_focus():
 	active = false;
