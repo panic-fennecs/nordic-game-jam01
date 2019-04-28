@@ -9,6 +9,7 @@ var last_input1 = 0
 var last_input2 = 0
 var last_key1 = null
 var last_key2 = null
+var first_hides = true
 
 var player1_forbidden = []
 var player2_forbidden = []
@@ -40,6 +41,9 @@ func choose_and_remove(arr):
 	return v
 
 func new_forbidden():
+	if first_hides:
+		first_hides = false
+		message_box.show_text("except...")
 	generate_forbidden()
 	hide_forbidden()
 	disabled = false
@@ -86,6 +90,7 @@ func unhide_buttons():
 func on_gain_focus():
 	active = true
 	reset_player_inputs()
+	message_box.show_text("Press the same key together.")
 
 func on_lose_focus():
 	active = false

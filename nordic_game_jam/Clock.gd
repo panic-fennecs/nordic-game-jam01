@@ -13,7 +13,7 @@ func _ready() -> void:
 func _day_over() -> void:
 	emit_signal("day_over")
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update()
 	
 func _draw() -> void:
