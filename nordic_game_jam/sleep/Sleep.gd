@@ -14,7 +14,7 @@ var active = false;
 
 func _ready():
 	get_node("Character1/AnimationPlayer").play("sleep")
-	get_node("Character2/AnimationPlayer").play("sleep")
+	get_node("Character2/AnimationPlayer").play("sleep2")
 	get_node("Character1").set_scale(Vector2(0.5, 0.5))
 	get_node("Character2").set_scale(Vector2(-0.5, 0.5))
 	get_node("Character1/Bottle").set_visible(false)
