@@ -5,9 +5,6 @@ var speed = 0.0
 
 const F = 7;
 
-func _input(event: InputEvent) -> void:
-	print(event)
-
 var bounce_counter = [0, 0];
 var buttons = [];
 var pressmap = [false, false];
@@ -38,7 +35,7 @@ func _process(delta: float) -> void:
 	sum = max(0, sum)
 	$icon.rotation_degrees = 360 * sum
 	if sum > 1:
-		get_tree().change_scene("res://Main.tscn")
+		get_tree().change_scene("res://start/AnotherStartScene.tscn")
 	$ColorRect2.modulate.a = sum
 
 	for x in [0, 1]:

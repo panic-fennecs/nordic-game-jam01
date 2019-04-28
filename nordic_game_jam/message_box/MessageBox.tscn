@@ -16,31 +16,29 @@ font_data = ExtResource( 2 )
 script = ExtResource( 1 )
 
 [node name="MainLabel" type="Label" parent="."]
+visible = false
 modulate = Color( 1, 0.662745, 0.0862745, 1 )
 anchor_right = 1.0
-margin_left = 242.0
-margin_top = 66.0
-margin_right = 1055.0
-margin_bottom = 228.0
+margin_left = 483.109
+margin_top = 66.2326
+margin_right = 851.109
+margin_bottom = 228.233
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "
 Hey"
 align = 1
-autowrap = true
 
 [node name="SubLabel" type="Label" parent="."]
+visible = false
 modulate = Color( 1, 0.662745, 0.0862745, 1 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 193.0
-margin_top = 66.0
-margin_right = 1096.0
-margin_bottom = 235.0
+margin_left = 483.109
+margin_top = 66.2326
+margin_right = 851.109
+margin_bottom = 228.233
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "
 Hey"
 align = 1
