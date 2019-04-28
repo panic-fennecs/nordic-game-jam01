@@ -20,7 +20,7 @@ func _ready():
 
 func generate_random(n, start_timestamp, possible_keys):
 	var inst = load("res://patterns/Pattern.gd")
-	return inst.generate_random(n, start_timestamp, null, 1000, possible_keys);
+	return inst.generate_random(n, start_timestamp, 1000, 1000, possible_keys);
 
 func restart():
 	bm.clear_preps();
