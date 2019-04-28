@@ -100,7 +100,7 @@ func miss(player_num):
 	reset_player_inputs()
 	if player_num == 0:
 		$Character1.spawn_emote("miss")
-		$Character2.spawn_emote("rested")
+		$Character2.spawn_emote("miss")
 	elif player_num == 1:
 		$Character1.spawn_emote("miss")
 	else:
