@@ -1,10 +1,10 @@
 extends Sprite
 
-const _miss_texture = preload("res://res/images/emotes/wrong.png")
-const _love_texture = preload("res://res/images/emotes/like.png")
-const _tasty_texture = preload("res://res/images/emotes/smile.png")
-const _rested_texture = preload("res://res/images/emotes/moon.png")
-const _unknown_texture = preload("res://res/images/emotes/information.png")
+const _miss_texture = preload("res://res/images/emotes/emote_wrong.png")
+const _love_texture = preload("res://res/images/emotes/emote_like.png")
+const _tasty_texture = preload("res://res/images/emotes/emote_eat.png")
+const _rested_texture = preload("res://res/images/emotes/emote_sleep.png")
+
 
 var initial_pos: Vector2
 var is_miss: bool = false
@@ -37,10 +37,8 @@ func set_emote_type(emote_type: String) -> void:
 			texture = _tasty_texture
 		"rested":
 			texture = _rested_texture
-		_:
-			texture = _unknown_texture
 		
-	scale = Vector2(0.2, 0.2)
+	scale = Vector2(0.5, 0.5)
 	
 func _on_Timer_timeout():
 	queue_free()
