@@ -26,7 +26,7 @@ func restart():
 	pattern_visuals = []
 
 func on_gain_focus():
-	info("play the same melody!")
+	info("play the same 4-button melody!")
 	active = true
 	restart()
 	get_node("Character1/Bottle").set_visible(true)
@@ -41,6 +41,9 @@ func on_lose_focus():
 
 func info(x):
 	get_node("/root/Main/UILayer/MessageBox").show_main_text(x)
+
+func subinfo(x):
+	get_node("/root/Main/UILayer/MessageBox").show_sub_text(x)
 
 func fail(x):
 	get_node("/root/Main/UILayer/MessageBox").show_sub_text(x)
@@ -98,7 +101,7 @@ func _process(_delta):
 				bm.buttons[bm.to_id(1, x.input)].succeed()
 				get_node("/root/Main/UILayer/AffectionBar").modify_player_value(SMALL_WIN_VALUE, 0)
 				get_node("/root/Main/UILayer/AffectionBar").modify_player_value(SMALL_WIN_VALUE, 1)
-				info("good!")
+				subinfo("good!")
 				waiting_for_player = null
 				if len(current_pattern) >= 4:
 					if blacklisted(current_pattern):
@@ -108,7 +111,7 @@ func _process(_delta):
 						blacklist.append(current_pattern)
 						if len(blacklist) > BLACKLIST_LEN:
 							blacklist.pop_front();
-						info("nice!")
+						subinfo("nice!")
 						get_node("/root/Main/UILayer/AffectionBar").modify_player_value(WIN_VALUE, 0)
 						get_node("/root/Main/UILayer/AffectionBar").modify_player_value(WIN_VALUE, 1)
 						get_node("/root/Main").next_scene()
