@@ -2,12 +2,20 @@ extends Node2D
 
 var scene_index = 0
 var day_index = 0
+var player_0_hair
+var player_1_hair
 
 var scene_list_prefabs = [
 	load("res://sleep/SleepScene.tscn"),
 	load("res://eat/EatScene.tscn"),
 	load("res://party/PartyScene.tscn")
 ];
+
+
+var hairs = [
+	load("res://res/images/stick_head.png"),
+	load("res://res/images/stick_head_2.png")
+]
 
 func _unhandled_key_input(event):
 	if event.pressed and event.scancode == KEY_3:
@@ -17,8 +25,12 @@ func get_scenes():
 	return get_tree().get_nodes_in_group("dynamic_scenes")
 
 func _ready():
+	randomize()
+	player_0_hair = hairs[randi() % hairs.size()]
+	player_1_hair = hairs[randi() % hairs.size()]
 	instantiate_scenes()
 	init_scene()
+	
 
 func instantiate_scenes():
 	#test loop for instantiating multiple scenes

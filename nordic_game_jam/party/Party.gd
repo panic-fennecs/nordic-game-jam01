@@ -18,7 +18,7 @@ var disabled = false
 
 const THRESHOLD = 60
 const DEBUFF_VALUE = -30
-const BUFF_VALUE = 100
+const BUFF_VALUE = 60
 
 var active = false
 

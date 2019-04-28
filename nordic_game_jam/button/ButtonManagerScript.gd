@@ -2,7 +2,7 @@ extends Node2D
 
 onready var im = get_node("/root/Main/InputManagerNode");
 var BUTTON = preload("res://button/Button.tscn");
-const PREP_DELTA = 400;
+const PREP_DELTA = 600;
 
 var preps = {};
 var buttons = {};
