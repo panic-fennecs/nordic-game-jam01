@@ -17,6 +17,8 @@ var player2_forbidden = []
 var disabled = false
 
 const THRESHOLD = 60
+const DEBUFF_VALUE = -30
+const BUFF_VALUE = 100
 
 var active = false
 
@@ -91,10 +93,12 @@ func on_gain_focus():
 	active = true
 	reset_player_inputs()
 	message_box.show_text("Press the same key together.")
+	get_node("/root/Main/UILayer/AffectionBar").hide_border()
 
 func on_lose_focus():
 	active = false
 	unhide_buttons()
+	get_node("/root/Main/UILayer/AffectionBar").show_border()
 
 func miss(player_num):
 	reset_player_inputs()
@@ -105,6 +109,9 @@ func miss(player_num):
 		$Character1.spawn_emote("miss")
 	else:
 		$Character2.spawn_emote("miss")
+
+	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 0)
+	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 1)
 
 	next_round()
 
@@ -128,8 +135,14 @@ func strike(key):
 		$Character1.spawn_emote("love")
 		$Character2.spawn_emote("love")
 
+		get_node("/root/Main/UILayer/AffectionBar").modify_player_value(BUFF_VALUE, 0)
+		get_node("/root/Main/UILayer/AffectionBar").modify_player_value(BUFF_VALUE, 1)
+
 		bm.buttons[bm.to_id(0, key)].succeed()
 		bm.buttons[bm.to_id(1, key)].succeed()
+	else:
+		get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 0)
+		get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 1)
 
 	next_round()
 
