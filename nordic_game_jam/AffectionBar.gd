@@ -25,9 +25,16 @@ func hide_border():
 ''' value should be int between -100 and 100, player 0 is red and top, player 1 is blue and bottom '''
 func modify_player_value(value: int, player: int):
 	assert abs(value) <= 100
+	
 	if player == 0:
+		if value <= 0 and player_one_value <= 0:
+			player_one_value = 0
+			return
 		player_one_value += value
 	if player == 1:
+		if value <= 0 and player_one_value <= 0:
+			player_one_value = 0
+			return
 		player_two_value += value
 	
 	if player_one_value + player_two_value >= MAX_POINTS:
