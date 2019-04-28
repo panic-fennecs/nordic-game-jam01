@@ -38,10 +38,10 @@ func on_lose_focus():
 	active = false
 
 func info(x):
-	get_node("/root/Main/UILayer/MessageBox").show_text(x)
+	get_node("/root/Main/UILayer/MessageBox").show_main_text(x)
 
 func fail(x):
-	info(x)
+	get_node("/root/Main/UILayer/MessageBox").show_sub_text(x)
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(LOSE_VALUE, 0)
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(LOSE_VALUE, 1)
 	restart()
