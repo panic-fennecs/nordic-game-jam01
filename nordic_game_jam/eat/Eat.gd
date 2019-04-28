@@ -3,8 +3,9 @@ extends Node2D
 onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 
-const THRESHOLD = 300;
+const BLACKLIST_THRESHOLD = 200;
 const BLACKLIST_LEN = 10;
+const THRESHOLD = 100;
 
 var blacklist = []
 var current_pattern = []
@@ -34,7 +35,7 @@ func blacklisted(pattern):
 			if p[i].input != pattern[i].input:
 				similar = false
 				break
-			if abs((p[i].time - p[0].time) - (pattern[i].time - pattern[0].time)) >= THRESHOLD:
+			if abs((p[i].time - p[0].time) - (pattern[i].time - pattern[0].time)) >= BLACKLIST_THRESHOLD:
 				similar = false
 				break
 		if similar:
@@ -79,7 +80,10 @@ func _process(_delta):
 						info("nice!")
 						get_node("/root/Main").next_scene()
 						return
-					
+		elif current_pattern.back().time < im.get_current_time() - THRESHOLD:
+			info("timeout!")
+			restart()
+			return
 
 
 
