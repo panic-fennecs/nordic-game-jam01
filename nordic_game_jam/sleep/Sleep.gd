@@ -2,6 +2,7 @@ extends Node2D
 
 onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
+onready var message_box = get_node("/root/Main/UILayer/MessageBox")
 
 const MAX_NOTE_DIST = 20;
 const THRESHOLD = 500;
@@ -14,11 +15,13 @@ var active = false;
 
 func _ready():
 	get_node("Character1/AnimationPlayer").play("sleep")
-	get_node("Character2/AnimationPlayer").play("sleep")
+	get_node("Character2/AnimationPlayer").play("sleep2")
 	get_node("Character1").set_scale(Vector2(0.5, 0.5))
 	get_node("Character2").set_scale(Vector2(-0.5, 0.5))
 	get_node("Character1/Bottle").set_visible(false)
 	get_node("Character2/Bottle").set_visible(false)
+	get_node("Character1/Apple").set_visible(false)
+	get_node("Character2/Apple").set_visible(false)
 
 func generate_random(n, start_timestamp, possible_keys):
 	var inst = load("res://patterns/Pattern.gd")
@@ -36,6 +39,7 @@ func restart():
 func on_gain_focus():
 	active = true;
 	restart()
+	message_box.show_main_text("Press the highlighted keys")
 
 func on_lose_focus():
 	active = false;

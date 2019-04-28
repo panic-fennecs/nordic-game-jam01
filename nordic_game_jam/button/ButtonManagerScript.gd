@@ -60,7 +60,7 @@ func _ready():
 			var posy = screeny / 2 + dist_y(key) * button_size * 1.5;
 
 			button.position.x = posx;
-			button.position.y = posy;
+			button.position.y = posy + 50;
 			buttons[id] = button;
 			preps[id] = [];
 			add_child(button);

@@ -4,9 +4,9 @@ onready var im = get_node("/root/Main/InputManagerNode")
 onready var bm = get_node("/root/Main/UILayer/ButtonManagerNode")
 onready var sprite_prefab = load("eat/Marker.tscn")
 
-const BLACKLIST_THRESHOLD = 200;
-const BLACKLIST_LEN = 10;
-const THRESHOLD = 100;
+const BLACKLIST_THRESHOLD = 200
+const BLACKLIST_LEN = 10
+const THRESHOLD = 100
 
 const SMALL_WIN_VALUE = 5;
 const WIN_VALUE = 10;
@@ -26,11 +26,13 @@ func restart():
 	pattern_visuals = []
 
 func on_gain_focus():
-	info("play the same melody!")
+	info("play the same 4-button melody!")
 	active = true
 	restart()
 	get_node("Character1/Bottle").set_visible(true)
 	get_node("Character2/Bottle").set_visible(false)
+	get_node("Character1/Apple").set_visible(false)
+	get_node("Character2/Apple").set_visible(true)
 	get_node("Character1/AnimationPlayer").play("drink")
 	get_node("Character2/AnimationPlayer").play("eat")
 
@@ -39,6 +41,9 @@ func on_lose_focus():
 
 func info(x):
 	get_node("/root/Main/UILayer/MessageBox").show_main_text(x)
+
+func subinfo(x):
+	get_node("/root/Main/UILayer/MessageBox").show_sub_text(x)
 
 func fail(x):
 	get_node("/root/Main/UILayer/MessageBox").show_sub_text(x)
@@ -96,7 +101,7 @@ func _process(_delta):
 				bm.buttons[bm.to_id(1, x.input)].succeed()
 				get_node("/root/Main/UILayer/AffectionBar").modify_player_value(SMALL_WIN_VALUE, 0)
 				get_node("/root/Main/UILayer/AffectionBar").modify_player_value(SMALL_WIN_VALUE, 1)
-				info("good!")
+				subinfo("good!")
 				waiting_for_player = null
 				if len(current_pattern) >= 4:
 					if blacklisted(current_pattern):
@@ -106,7 +111,7 @@ func _process(_delta):
 						blacklist.append(current_pattern)
 						if len(blacklist) > BLACKLIST_LEN:
 							blacklist.pop_front();
-						info("nice!")
+						subinfo("nice!")
 						get_node("/root/Main/UILayer/AffectionBar").modify_player_value(WIN_VALUE, 0)
 						get_node("/root/Main/UILayer/AffectionBar").modify_player_value(WIN_VALUE, 1)
 						get_node("/root/Main").next_scene()

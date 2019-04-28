@@ -9,14 +9,13 @@ var last_input1 = 0
 var last_input2 = 0
 var last_key1 = null
 var last_key2 = null
-var first_hides = true
 
 var player1_forbidden = []
 var player2_forbidden = []
 
 var disabled = false
 
-const THRESHOLD = 60
+const THRESHOLD = 100
 const DEBUFF_VALUE = -30
 const BUFF_VALUE = 60
 
@@ -26,7 +25,8 @@ var active = false
 func _ready():
 	get_node("Character1/AnimationPlayer").play("dance")
 	get_node("Character2/AnimationPlayer").play("rave")
-	get_node("Character2").set_scale(Vector2(-0.5, 0.5))
+	get_node("Character2").set_scale(Vector2(-0.3, 0.3))
+	get_node("Character1").set_scale(Vector2(0.3, 0.3))
 	$UnhideTimer.connect("timeout", self, "unhide_buttons")
 	$RehideTimer.connect("timeout", self, "new_forbidden")
 
@@ -44,9 +44,6 @@ func choose_and_remove(arr):
 	return v
 
 func new_forbidden():
-	if first_hides:
-		first_hides = false
-		message_box.show_main_text("except...")
 	generate_forbidden()
 	hide_forbidden()
 	disabled = false
@@ -94,10 +91,12 @@ func unhide_buttons():
 func on_gain_focus():
 	active = true
 	reset_player_inputs()
-	message_box.show_main_text("Press the same key together.")
+	message_box.show_main_text("Press the same key together, but be aware of the bombs!")
 	get_node("/root/Main/UILayer/AffectionBar").hide_border()
 	get_node("Character1/Bottle").set_visible(false)
 	get_node("Character2/Bottle").set_visible(false)
+	get_node("Character1/Apple").set_visible(false)
+	get_node("Character2/Apple").set_visible(false)
 
 func on_lose_focus():
 	active = false
@@ -114,6 +113,8 @@ func miss(player_num):
 	else:
 		$Character2.spawn_emote("miss")
 
+	message_box.show_sub_text("Press together!")
+
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 0)
 	get_node("/root/Main/UILayer/AffectionBar").modify_player_value(DEBUFF_VALUE, 1)
 
@@ -125,15 +126,15 @@ func strike(key):
 
 	var forb = false
 	if (key in player1_forbidden):
-		message_box.show_sub_text("Could not use this Key (player 1)")
+		message_box.show_sub_text("Be aware of the bombs!")
 		$Character1.spawn_emote("miss")
 		forb = true
-		bm.buttons[bm.to_id(0, key)].failed()
+		bm.buttons[bm.to_id(0, key)].show_bomb_timed()
 	if (key in player2_forbidden):
-		message_box.show_sub_text("Could not use this Key (player 2)")
+		message_box.show_sub_text("Be aware of the bombs!")
 		$Character2.spawn_emote("miss")
 		forb = true
-		bm.buttons[bm.to_id(1, key)].failed()
+		bm.buttons[bm.to_id(1, key)].show_bomb_timed()
 
 	if not forb:
 		$Character1.spawn_emote("love")
@@ -164,7 +165,7 @@ func _process(_delta):
 			miss(0)
 		else:
 			if last_key1 != last_key2:
-				message_box.show_main_text("Press the same key")
+				message_box.show_sub_text("Press the same key!")
 				bm.buttons[bm.to_id(0, last_key1)].failed()
 				bm.buttons[bm.to_id(1, last_key2)].failed()
 				miss(0)

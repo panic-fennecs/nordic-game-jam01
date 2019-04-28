@@ -13,17 +13,17 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Character1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 329.162, 351.478 )
+position = Vector2( 329.162, 401.478 )
 is_player_0 = true
 
 [node name="Character2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 975.484, 350.422 )
+position = Vector2( 975.484, 400.422 )
 
 [node name="UnhideTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.6
 one_shot = true
 
 [node name="RehideTimer" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 1.2
 one_shot = true
 
