@@ -3,11 +3,11 @@
 [ext_resource path="res://message_box/MessageBox.gd" type="Script" id=1]
 [ext_resource path="res://res/fonts/Square.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 45
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 30
 extra_spacing_top = 50
 font_data = ExtResource( 2 )
@@ -23,7 +23,7 @@ margin_left = 483.109
 margin_top = 66.2326
 margin_right = 851.109
 margin_bottom = 228.233
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "
 Hey"
 align = 1
@@ -38,7 +38,7 @@ margin_left = 483.109
 margin_top = 66.2326
 margin_right = 851.109
 margin_bottom = 228.233
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "
 Hey"
 align = 1
