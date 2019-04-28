@@ -7,7 +7,7 @@ const CLOCK_OUTLINE_COLOR = Color(0.0, 0.0, 0.0)
 const CLOCK_PROGRESS_COLOR = Color(1.0, 0.0, 0.0)
 
 func _ready() -> void:
-	$FreeTimeTimer.connect("timeout", self, "_day_over")
+	#$FreeTimeTimer.connect("timeout", self, "_day_over")
 	position.x = get_viewport_rect().size.x / 2
 	
 func _day_over() -> void:
