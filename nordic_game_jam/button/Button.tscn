@@ -90,6 +90,12 @@ modulate = Color( 0, 0, 0, 0.678431 )
 z_index = -2
 texture = ExtResource( 10 )
 
+[node name="Bomb" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1.69592, -4.67968 )
+scale = Vector2( 0.373483, 0.360611 )
+texture = ExtResource( 11 )
+
 [node name="RedTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
@@ -98,9 +104,7 @@ one_shot = true
 wait_time = 0.3
 one_shot = true
 
-[node name="Bomb" type="Sprite" parent="."]
-visible = false
-position = Vector2( 1.69592, -4.67968 )
-scale = Vector2( 0.373483, 0.360611 )
-texture = ExtResource( 11 )
+[node name="BombTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
 

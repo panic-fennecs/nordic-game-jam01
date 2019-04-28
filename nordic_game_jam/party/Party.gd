@@ -128,12 +128,12 @@ func strike(key):
 		message_box.show_sub_text("Could not use this Key (player 1)")
 		$Character1.spawn_emote("miss")
 		forb = true
-		bm.buttons[bm.to_id(0, key)].failed()
+		bm.buttons[bm.to_id(0, key)].show_bomb_timed()
 	if (key in player2_forbidden):
 		message_box.show_sub_text("Could not use this Key (player 2)")
 		$Character2.spawn_emote("miss")
 		forb = true
-		bm.buttons[bm.to_id(1, key)].failed()
+		bm.buttons[bm.to_id(1, key)].show_bomb_timed()
 
 	if not forb:
 		$Character1.spawn_emote("love")
