@@ -189,12 +189,12 @@ func _input(event):
 	var current_time = get_current_time()
 	if event is InputEventKey:
 		if event.pressed and not event.echo:
-			if event.scancode in input_manager.PLAYER1_INPUTS:
+			if event.scancode in input_manager.PLAYER0_INPUTS:
 				last_input1 = current_time
-				last_key1 = input_manager.PLAYER1_INPUTS[event.scancode]
-			elif event.scancode in input_manager.PLAYER2_INPUTS:
+				last_key1 = input_manager.PLAYER0_INPUTS[event.scancode]
+			elif event.scancode in input_manager.PLAYER1_INPUTS:
 				last_input2 = current_time
-				last_key2 = input_manager.PLAYER2_INPUTS[event.scancode]
+				last_key2 = input_manager.PLAYER1_INPUTS[event.scancode]
 
 
 func get_current_time():
