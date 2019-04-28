@@ -23,11 +23,9 @@ margin_top = 17.0
 margin_right = 598.0
 margin_bottom = 179.0
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "
 Hey"
 align = 1
-autowrap = true
 
 [node name="MainLabelRight" type="Label" parent="."]
 modulate = Color( 1, 0.662745, 0.0862745, 1 )
