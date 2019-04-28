@@ -22,7 +22,7 @@ func restart():
 	pattern_visuals = []
 
 func on_gain_focus():
-	info("find an equal rhythm!")
+	info("play the same melody!")
 	active = true
 	restart()
 
