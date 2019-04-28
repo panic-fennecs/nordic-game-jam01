@@ -22,3 +22,7 @@ position = Vector2( 975.484, 350.422 )
 wait_time = 0.2
 one_shot = true
 
+[node name="RehideTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
